@@ -14,7 +14,7 @@ class UserManager
     {
         $_SESSION['ses_email'] = $email;
 
-        if($id != null) $_SESSION['ses_id'] = $id;
+        if($id != null) $_SESSION['user_id'] = $id;
     }
 
     /**********************************
@@ -103,6 +103,30 @@ class UserManager
                 return $test_user;
             }
         }
+        return null;
+    }
+
+    /**********************************
+     * ----- LOGIN FUNCTION ----------
+     *********************************/
+    function connectingUser($params){
+
+        // init
+        $test_user = new user();
+        $test_user->getRowByEmail($params['email']);
+
+        // test
+        if($test_user->email != null){
+
+            $verify = password_verify($params['password'], $test_user->password);
+
+            if($verify){
+                return $test_user;
+            }
+            $_SESSION['err_msg'] = "Le mot de passe est incorrect.";
+            return null;
+        }
+        $_SESSION['err_msg'] = "Cet email n'existe pas.";
         return null;
     }
 

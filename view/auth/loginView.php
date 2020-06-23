@@ -23,7 +23,8 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <input type="submit" name="Valider" class="btn btn-block bg-red" />
+                    <button type="submit" name="connecting" class="btn btn-block bg-red">Valider
+                    </button>
                 </div>
                 <div class="col-md-6">
                   <a href="index.php?action=signup" class="btn btn-block bg-blue">Inscription</a>
@@ -32,7 +33,7 @@
             </div>
 
             <span class="error-msg">
-              <?= isset( $error_msg ) ? $error_msg : null; ?>
+                <?= isset($_SESSION['err_msg']) ? $_SESSION['err_msg'] : null ?>
             </span>
           </form>
         </div>
@@ -46,7 +47,7 @@
   </div>
 </div>
 
-
+<?php if(isset($_SESSION['err_msg'])) $_SESSION['err_msg'] = ''; ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require( __DIR__ . '/../base.php'); ?>
