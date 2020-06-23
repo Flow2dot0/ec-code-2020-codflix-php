@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once( 'model/user.php' );
+require_once('model/user.manager.php');
 
 /****************************
 * ----- LOAD LOGIN PAGE -----
@@ -31,20 +31,20 @@ function login( $post ) {
   $data->email    = $post['email'];
   $data->password = $post['password'];
 
-  $user           = new User( $data );
-  $userData       = $user->getUserByEmail();
-
-  $error_msg      = "Email ou mot de passe incorrect";
-
-  if( $userData && sizeof( $userData ) != 0 ):
-    if( $user->getPassword() == $userData['password'] ):
-
-      // Set session
-      $_SESSION['user_id'] = $userData['id'];
-
-      header( 'location: index.php ');
-    endif;
-  endif;
+//  $user           = new User( $data );
+//  $userData       = $user->getUserByEmail();
+//
+//  $error_msg      = "Email ou mot de passe incorrect";
+//
+//  if( $userData && sizeof( $userData ) != 0 ):
+//    if( $user->getPassword() == $userData['password'] ):
+//
+//      // Set session
+//      $_SESSION['user_id'] = $userData['id'];
+//
+//      header( 'location: index.php ');
+//    endif;
+//  endif;
 
   require('view/auth/loginView.php');
 }
