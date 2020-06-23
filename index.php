@@ -5,6 +5,8 @@ require_once('controller/loginController.php');
 require_once('controller/signupController.php');
 require_once('controller/mediaController.php');
 require_once('controller/checkingController.php');
+require_once('controller/profileController.php');
+
 /**************************
  * ----- HANDLE ACTION -----
  ***************************/
@@ -46,6 +48,20 @@ if (isset($_GET['action'])):
             logout();
 
             break;
+
+        case 'profile':
+            if (!empty($_POST)) updateProfile($_POST);
+
+            profilePage();
+
+            break;
+
+        case 'fix1':
+
+            $_SESSION['err_msg'] = '';
+
+            break;
+
 
     endswitch;
 

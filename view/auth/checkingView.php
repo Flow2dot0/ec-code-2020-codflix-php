@@ -54,6 +54,8 @@
     </div>
 </div>
 
+<?php if(isset($_SESSION['err_msg'])) $_SESSION['err_msg'] = ''; ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require( __DIR__ . '/../base.php'); ?>

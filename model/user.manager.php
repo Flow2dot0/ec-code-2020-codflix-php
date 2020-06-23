@@ -81,6 +81,55 @@ class UserManager
         return null;
     }
 
+    /**********************************
+     * ----- UPDATE USER FUNCTION -----
+     *********************************/
+    function updateUser($params){
+
+        $new_user = new user();
+        $new_user->getRow($params['id']);
+
+        // update if exists
+        if($params['email'] != null) $new_user->email = $params['email'];
+        if($params['username'] != null) $new_user->username = $params['username'];
+        if($params['firstname'] != null) $new_user->firstname = $params['firstname'];
+        if($params['lastname'] != null) $new_user->lastname = $params['lastname'];
+
+
+
+        // checking passwords
+        // if passwords are not equals and old is correct
+        if($params['old_password'] != null || $params['password'] != null || $params['password_confirm'] != null) {
+
+            $verify = password_verify($params['old_password'], $new_user->password);
+            if($verify){
+                if ($params['password'] == $params['password_confirm']) {
+                    $new_user->password = password_hash($params['password'], PASSWORD_DEFAULT);
+
+                    // create token confirmation
+                    $generate = password_hash($params['firstname'].$params['lastname'], PASSWORD_DEFAULT);
+                    $new_user->token_confirmation = substr($generate, 10, 10);
+
+                    $new_user->status = 'disabled';
+                    $new_user->updateRow();
+                    $new_user->getRow($params['id']);
+
+
+                    // let alert by email
+                    $mail_manager = new MailManager();
+                    $mail_manager->newUser($new_user->email, $new_user->token_confirmation);
+
+                    return 2;
+                }
+
+            }
+            $_SESSION['err_msg'] = "Tous les champs mots de passe doivent être correctement renseignés pour une modification de mot de passe.";
+        }
+        $new_user->updateRow();
+        $new_user->getRow($params['id']);
+        return 1;
+    }
+
     /*****************************************
      * ----- VERIFICATION USER FUNCTION -----
      ****************************************/
@@ -115,6 +164,11 @@ class UserManager
         $test_user = new user();
         $test_user->getRowByEmail($params['email']);
 
+        if($test_user->status == 'disabled') {
+            $_SESSION['err_msg'] = "Votre compte n'est pas confirmé, veuillez regarder dans vos mails.";
+            return null;
+        }
+
         // test
         if($test_user->email != null){
 
@@ -130,4 +184,19 @@ class UserManager
         return null;
     }
 
+    /**********************************
+     * --- GET USER DATA FUNCTION ---
+     *********************************/
+    function getUserData($id){
+
+        // init
+        $usr = new user();
+        $usr->getRow($id);
+
+        // test
+        if($usr->id != null){
+            return $usr;
+        }
+        return null;
+    }
 }
