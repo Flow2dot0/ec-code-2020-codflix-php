@@ -7,13 +7,16 @@
 function init_db() {
   try {
 
-    $host     = 'localhost';
-    $dbname   = 'codflix';
-    $charset  = 'utf8';
-    $user     = 'root';
-    $password = '';
+    define("BDD_HOSTNAME", "localhost");
+    define("BDD_PORT", "3306");
+    define("BDD_NAME", "codflix");
+    define("BDD_USER", "root");
+    define("BDD_PASS", "");
 
-    $db = new PDO( "mysql:host=$host;dbname=$dbname;charset=$charset", $user, $password );
+    $dns = 'mysql:host='.BDD_HOSTNAME.';port='.BDD_PORT.';dbname='.BDD_NAME;
+    $pdo = new PDO( $dns, BDD_USER, BDD_PASS );
+    $pdo->exec('SET NAMES utf8mb4');
+    $pdo->exec("SET sql_mode = 'ONLY_FULL_GROUP_BY'");
 
   } catch(Exception $e) {
 
@@ -21,5 +24,5 @@ function init_db() {
 
   }
 
-  return $db;
+  return $pdo;
 }
