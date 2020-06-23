@@ -44,6 +44,7 @@ function connexion() {
     return $pdo;
 }
 
+$pdo = connexion();
 
 
 

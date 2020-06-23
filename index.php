@@ -1,47 +1,62 @@
 <?php
 
-require_once( 'controller/homeController.php' );
-require_once( 'controller/loginController.php' );
-require_once( 'controller/signupController.php' );
+require_once('controller/homeController.php');
+require_once('controller/loginController.php');
+require_once('controller/signupController.php');
 require_once('controller/mediaController.php');
-
+require_once('controller/checkingController.php');
 /**************************
-* ----- HANDLE ACTION -----
-***************************/
+ * ----- HANDLE ACTION -----
+ ***************************/
 
-if ( isset( $_GET['action'] ) ):
+if (isset($_GET['action'])):
 
-  switch( $_GET['action']):
+    switch ($_GET['action']):
 
-    case 'login':
+        case 'login':
 
-      if ( !empty( $_POST ) ) login( $_POST );
-      else loginPage();
+            if (!empty($_POST)) login($_POST);
+            else loginPage();
 
-    break;
+            break;
 
-    case 'signup':
+        case 'signup':
 
-      signupPage();
+            if (!empty($_POST)) signup($_POST);
+            else signupPage();
 
-    break;
+            break;
 
-    case 'logout':
 
-      logout();
+        case 'checking':
+            if(isset($_GET['email']) && !empty($_GET['email'])) $_SESSION['ses_email'] = htmlspecialchars($_GET['email']);
+            checkingPage();
 
-    break;
+            break;
 
-  endswitch;
+        case 'silentcheck':
+
+            silentCheck();
+
+            break;
+
+
+        case 'logout':
+
+            logout();
+
+            break;
+
+    endswitch;
 
 else:
 
-  $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
+    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : false;
 
-  if( $user_id ):
-    mediaPage();
-  else:
-    homePage();
-  endif;
+    if ($user_id):
+        mediaPage();
+    else:
+        homePage();
+    endif;
 
 endif;
