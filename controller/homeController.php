@@ -1,6 +1,6 @@
 <?php
 
-require_once( 'model/user.php' );
+require_once('model/user.manager.php');
 
 /***************************
 * ----- LOAD HOME PAGE -----
@@ -12,7 +12,7 @@ function homePage() {
 
   if( $user_id ):
 
-    $user_data  = User::getUserById( $user_id );
+//    $user_data  = User::getUserById( $user_id );
 
     require('view/dashboardView.php');
   else:

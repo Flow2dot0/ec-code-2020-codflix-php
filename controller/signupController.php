@@ -1,6 +1,6 @@
 <?php
 
-require_once( 'model/user.php' );
+require_once('model/user.manager.php');
 
 /****************************
 * ----- LOAD SIGNUP PAGE -----
