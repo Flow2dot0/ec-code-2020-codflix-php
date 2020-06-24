@@ -47,12 +47,14 @@
             </div>
             <div class="col-md-6 p-5">
                 <div class="auth-container">
-                    <h1>Une derrnière chose et à vous le catalogue !</h1>
+                    <h1>Une dernière chose et à vous le catalogue !</h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<?php if(isset($_SESSION['err_msg'])) $_SESSION['err_msg'] = ''; ?>
 
 <?php $content = ob_get_clean(); ?>
 

@@ -56,11 +56,10 @@ function signup($post){
             if($create->id != null){
                 $user_manager->addSessions($create->email);
                 require('view/auth/checkingView.php');
-            }else {
-                require('view/auth/signupView.php');
             }
         }
     }
+    require('view/auth/signupView.php');
 }
 
 

@@ -25,8 +25,9 @@
         <h2 class="title">Bienvenue</h2>
         <div class="sidebar-menu">
           <ul>
-            <li class="active"><a href="/CodFlix/">Médias</a></li>
-            <li><a href="#">Nous contacter</a></li>
+            <li class="<?= $nav_index == 1 ? 'active' : '' ?>"><a href="index.php">Médias</a></li>
+              <li class="<?= $nav_index == 2 ? 'active' : '' ?>"><a href="index.php?action=profile">Mon profil</a></li>
+            <li class="<?= $nav_index == 3 ? 'active' : '' ?>"><a href="index.php?action=contact">Nous contacter</a></li>
             <li><a href="index.php?action=logout">Me déconnecter</a></li>
           </ul>
         </div>
@@ -35,7 +36,7 @@
         <!-- Page Content  -->
       <div id="content">
         <div class="header">
-          <h2 class="title">Cod<span>'Flix</span></h2>
+            <h2 class="title">Cod<span>'Flix</span></h2>
           <div class="toggle-menu d-block d-md-none">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fas fa-bars"></i>
@@ -43,7 +44,7 @@
             </button>
           </div>
         </div>
-        <div class="content p-4">
+        <div class="content pr-3 pl-3 pt-0 pb-0">
           <?= $content; ?>
         </div>
         <footer>Copyright Cod'Flix</footer>
