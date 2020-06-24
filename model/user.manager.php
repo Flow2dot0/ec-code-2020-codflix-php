@@ -59,8 +59,8 @@ class UserManager
         }
 
         // create token confirmation
-        $generate = password_hash($params['firstname'].$params['lastname'], PASSWORD_DEFAULT);
-        $new_user->token_confirmation = substr($generate, 10, 10);
+        $generate = password_hash(strval(random_int(100000, 999999)), PASSWORD_DEFAULT);
+        $new_user->token_confirmation = $generate;
 
         // insert
         $new_user->password = password_hash($params['password'], PASSWORD_DEFAULT);
@@ -107,8 +107,8 @@ class UserManager
                     $new_user->password = password_hash($params['password'], PASSWORD_DEFAULT);
 
                     // create token confirmation
-                    $generate = password_hash($params['firstname'].$params['lastname'], PASSWORD_DEFAULT);
-                    $new_user->token_confirmation = substr($generate, 10, 10);
+                    $generate = password_hash(strval(random_int(100000, 999999)), PASSWORD_DEFAULT);
+                    $new_user->token_confirmation = $generate;
 
                     $new_user->status = 'disabled';
                     $new_user->updateRow();

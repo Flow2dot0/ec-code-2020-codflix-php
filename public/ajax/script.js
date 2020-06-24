@@ -26,8 +26,9 @@ $(document).ready(function() {
 
     // fix for the profileView display err msg
     // by only php the msg is too quickly deleted
+
     let cleaner = $('.error-msg').html();
-    if(cleaner.length > 0){
+    if(cleaner && cleaner.length > 0){
         $.ajax({
             url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=fix1',
             method : "POST",

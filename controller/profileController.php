@@ -6,7 +6,10 @@ require_once('model/user.manager.php');
  ****************************/
 function profilePage()
 {
+    // get data for the view
     $user = profileData();
+    // for navbar index
+    $nav_index = 2;
     require('view/profileView.php');
 
 }
@@ -48,20 +51,17 @@ function updateProfile($post)
         // redirect
         if($user == 2){
             $user_manager->deleteSessions();
-//            $_POST = [];
-            header('location: index.php?action=checking&email='.$params['email']);
-        }else{
-            header('location: index.php?action=profile');
+            $user_manager->addSessions($params['email']);
+            require('view/auth/checkingView.php');
         }
     }
-    header('location: index.php?action=profile');
-
 }
 
 /****************************
  * ----- DELETE PROFILE -----
  ****************************/
-function deleteProfile($post){
-    // TODO
+function deleteProfile(){
+    // TODO : delete all fk links
+    // TODO : come back later
 }
 

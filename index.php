@@ -6,6 +6,7 @@ require_once('controller/signupController.php');
 require_once('controller/mediaController.php');
 require_once('controller/checkingController.php');
 require_once('controller/profileController.php');
+require_once('controller/contactController.php');
 
 /**************************
  * ----- HANDLE ACTION -----
@@ -32,6 +33,8 @@ if (isset($_GET['action'])):
 
         case 'checking':
             if(isset($_GET['email']) && !empty($_GET['email'])) $_SESSION['ses_email'] = htmlspecialchars($_GET['email']);
+            var_dump('alo');
+            die();
             checkingPage();
 
             break;
@@ -53,6 +56,16 @@ if (isset($_GET['action'])):
             if (!empty($_POST)) updateProfile($_POST);
 
             profilePage();
+
+            break;
+
+        case 'deleting':
+
+            deleteProfile();
+
+        case 'contact':
+
+            contactPage();
 
             break;
 

@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-6 p-5">
                 <div class="auth-container">
-                    <h1>Une derrnière chose et à vous le catalogue !</h1>
+                    <h1>Une dernière chose et à vous le catalogue !</h1>
                 </div>
             </div>
         </div>

@@ -25,9 +25,9 @@
         <h2 class="title">Bienvenue</h2>
         <div class="sidebar-menu">
           <ul>
-            <li class="active"><a href="index.php?action=media">Médias</a></li>
-              <li><a href="index.php?action=profile">Mon profil</a></li>
-            <li><a href="index.php?action=contact">Nous contacter</a></li>
+            <li class="<?= $nav_index == 1 ? 'active' : '' ?>"><a href="index.php">Médias</a></li>
+              <li class="<?= $nav_index == 2 ? 'active' : '' ?>"><a href="index.php?action=profile">Mon profil</a></li>
+            <li class="<?= $nav_index == 3 ? 'active' : '' ?>"><a href="index.php?action=contact">Nous contacter</a></li>
             <li><a href="index.php?action=logout">Me déconnecter</a></li>
           </ul>
         </div>
