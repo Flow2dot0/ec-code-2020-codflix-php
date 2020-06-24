@@ -48,3 +48,7 @@
     position: relative;
     flex-basis: 100%;
 }
+
+.sizeUp:hover {
+  transform: scale(1.5);
+}

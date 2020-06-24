@@ -12,9 +12,9 @@ function snackbar($data){
 /******************************
  * -----   MEDIUM CARD  -----
  ****************************/
-function mediumCard(String $url = 'https://fr.web.img5.acsta.net/r_640_360/newsv7/20/06/02/11/30/1318590.jpg', String $css = 'text-white bg-info mb-3 p-1'){
+function mediumCard(String $url = 'https://fr.web.img5.acsta.net/r_640_360/newsv7/20/06/02/11/30/1318590.jpg', String $css = 'text-white bg-dark mb-5 mt-5 p-1'){
     ?>
-    <div class="card <?= $css ?>" style="max-width: 18rem;">
+    <div class="sizeUp card <?= $css ?>" style="max-width: 18rem;">
         <img class="card-img-top" src="<?= $url ?>" alt="Card image cap">
     </div>
     <?php

@@ -14,6 +14,6 @@ function mediaPage() {
 //  $search = isset( $_GET['titl'] ) ? $_GET['titl'] : null;
 //  $medias = Media::filterMedias( $search );
 
-  require('view/mediaListView.php');
+  require('view/media/mediaListView.php');
 
 }
