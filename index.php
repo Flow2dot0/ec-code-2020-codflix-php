@@ -33,8 +33,7 @@ if (isset($_GET['action'])):
 
         case 'checking':
             if(isset($_GET['email']) && !empty($_GET['email'])) $_SESSION['ses_email'] = htmlspecialchars($_GET['email']);
-            var_dump('alo');
-            die();
+
             checkingPage();
 
             break;
@@ -63,7 +62,10 @@ if (isset($_GET['action'])):
 
             deleteProfile();
 
+            break;
+
         case 'contact':
+            if (!empty($_POST)) sendContactMessage($_POST);
 
             contactPage();
 

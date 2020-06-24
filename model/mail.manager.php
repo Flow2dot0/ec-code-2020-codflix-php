@@ -1,7 +1,13 @@
 <?php
-class MailManager{
 
-    function newUser(String $email, String $token_confirmation){
+class MailManager
+{
+
+    /***********************************************
+     * ----- SEND EMAIL WHEN NEW USER FUNCTION -----
+     ***********************************************/
+    function newUser(String $email, String $token_confirmation)
+    {
         $subject = 'Cod Flix - Création de compte !';
 
         // message
@@ -18,7 +24,7 @@ class MailManager{
                                         <p>Identifiant : <span style="font-style: italic; color: green">' . $email . '</span></p>
                                         <p>Code de vérification : <span style="font-style: italic; color: green">' . $token_confirmation . '</span></p>
                                        
-                                       <p><a href="http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=checking&email='.$email.'">Votre lien ! Cliquez ici.</a></p>
+                                       <p><a href="http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=checking&email=' . $email . '">Votre lien ! Cliquez ici.</a></p>
                                         
                                        <br>
                                        
@@ -29,52 +35,19 @@ class MailManager{
                                      </html>
                                      ';
 
-        // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
+        // send
         mail($email, $subject, utf8_decode($message), implode("\r\n", $headers));
     }
 
-    function resetPassword(String $email, String $password){
-        // send email with random password
-        $subject = 'BOOKDAY - Récupération de compte !';
-
-        // message
-        $message = '
-                 <html>
-                  <head>
-                   <title></title>
-                  </head>
-                  <body>
-                   <h3>Bienvenue chez BOOKDAY</h3>
-                   <h4>Voici les détails !</h4>
-                   <br>
-                   
-                    <p>Identifiant : <span style="font-style: italic; color: green">' . $email . '</span></p>
-                    <p>Mot de passe : <span style="font-style: italic; color: green">' . $password . '</span></p>
-                   
-                    <br>
-                    <p>Votre mot de passe a été réinitialisé, veuillez après vous être connecté définir un nouveau mot de passe pour des raisons de sécurité.</p>
-                    
-                   <br>
-                   
-                   <p>Cordialement.</p>
-                   <p>L\'équipe BOOKDAY.</p>
-                   
-                  </body>
-                 </html>
-                 ';
-
-        // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-
-        mail($email, $subject, utf8_decode($message), implode("\r\n", $headers));
-    }
-
-    function updateUser(String $email, String $password){
-        $subject = 'BOOKDAY - Mise à jour de compte !';
+    /****************************************************
+     * ----SEND EMAIL WHEN UPDATE USER PW FUNCTION -----
+     ***************************************************/
+    function updateUser(String $email, String $token_confirmation)
+    {
+        $subject = 'Cod Flix - Modification de compte !';
 
         // message
         $message = '
@@ -83,26 +56,69 @@ class MailManager{
                                        <title></title>
                                       </head>
                                       <body>
-                                       <h3>Mise à jour de vos informations personnelles chez BOOKDAY</h3>
-                                       <h4>Voici les détails !</h4>
+                                       <h3>Vous avez demandé un changement de mot de passe.</h3>
+                                       <h4>Veuillez confirmer votre compte par le lien d\'activation ci-dessous!</h4>
                                        <br>
                                        
                                         <p>Identifiant : <span style="font-style: italic; color: green">' . $email . '</span></p>
-                                        <p>Mot de passe : <span style="font-style: italic; color: green">' . $password . '</span></p>
+                                        <p>Code de vérification : <span style="font-style: italic; color: green">' . $token_confirmation . '</span></p>
+                                       
+                                       <p><a href="http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=checking&email=' . $email . '">Votre lien ! Cliquez ici.</a></p>
                                         
                                        <br>
                                        
                                        <p>Cordialement.</p>
-                                       <p>L\'équipe BOOKDAY.</p>
+                                       <p>L\'équipe Cod Flix.</p>
                                        
                                       </body>
                                      </html>
                                      ';
 
-        // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
+        // send
         mail($email, $subject, utf8_decode($message), implode("\r\n", $headers));
+    }
+
+    /****************************************************
+     * --------- SEND CONTACT MESSAGE FUNCTION ----------
+     ***************************************************/
+    function contactMessage($params){
+
+        // fake email admin, you can test by adding a real one
+        // check spams
+        $placeholder_email_admin = 'florian.gustin.business@gmail.com';
+
+        $subject = 'Cod Flix - Formulaire de contact - '.$params['firstname'].' '.$params['lastname'];
+
+        // message
+        $message = '
+                                     <html>
+                                      <head>
+                                       <title></title>
+                                      </head>
+                                      <body>
+                                       <h3>Vous avez reçu message depuis le formulaire de contact.</h3>
+                                       <br>
+                                       <h4>Voici son contenu :</h4>
+                                       
+                                       
+                                        <p style="padding: 20px;">'.$params['message'].'</p>
+                                       
+                                       <br>
+                                       
+                                        <p>Auteur : '.$params['email'].'</p>
+
+                                     
+                                      </body>
+                                     </html>
+                                     ';
+
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+        // send
+        mail($placeholder_email_admin, $subject, utf8_decode($message), implode("\r\n", $headers));
     }
 }

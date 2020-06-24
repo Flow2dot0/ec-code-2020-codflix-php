@@ -117,7 +117,7 @@ class UserManager
 
                     // let alert by email
                     $mail_manager = new MailManager();
-                    $mail_manager->newUser($new_user->email, $new_user->token_confirmation);
+                    $mail_manager->updateUser($new_user->email, $new_user->token_confirmation);
 
                     return 2;
                 }
