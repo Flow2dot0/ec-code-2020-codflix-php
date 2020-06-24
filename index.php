@@ -66,6 +66,7 @@ if (isset($_GET['action'])):
 
         case 'contact':
             if (!empty($_POST)) sendContactMessage($_POST);
+
             contactPage();
 
             break;
