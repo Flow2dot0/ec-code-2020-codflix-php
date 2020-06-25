@@ -37,7 +37,10 @@ $(document).ready(function() {
     }
 
 
-
+    // fill modal data on click on card
+    // add youtube embed player
+    // add favorite option
+    // toggle modal
     $('.previewModal').on('click', function (e) {
         let modalTrigger = $(this);
 
@@ -102,8 +105,31 @@ $(document).ready(function() {
                     $('#dataModalVideo').html(iframe);
 
                     // if series
-                    // decode[0]['type']
-                    // TODO : complete
+                    if(decode[0]['type'] === 'serie'){
+                        $.ajax({
+                            url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentseries',
+                            method : "POST",
+                            data : {fetch_series:decode[0].id},
+                            success : function(data) {
+                                let decoded = JSON.parse(data);
+                                if(decoded != null){
+                                    console.log(decoded);
+
+                                    $('#ss1').html('');
+                                    $('#ss1').append('<td class="font-weight-bold text-danger m-2" style="font-size: 20px;">1</td>');
+                                    for(var i = 1; i <= decoded.s1 ; i++ ){
+                                        $('#ss1').append('<td class="font-weight-bold p-0 pt-2"><input class="ss1-index" type="button" value="'+ (i) +'"></td>');
+                                    }
+
+                                    $('#ss2').html('');
+                                    $('#ss2').append('<td class="font-weight-bold text-danger m-2" style="font-size: 20px;">2</td>');
+                                    for(var i = 1; i <= decoded.s2 ; i++ ){
+                                        $('#ss2').append('<td class="font-weight-bold p-0 pt-2"><input class="ss2-index" type="button" value="'+ (i) +'"></td>');
+                                    }
+                                }
+                            }
+                        });
+                    }
                     modal.modal('toggle');
                 }
             }

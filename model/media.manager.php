@@ -27,6 +27,20 @@ class MediaManager
         return null;
     }
 
+    /*********************************************
+     * ----- GET FULL DETAIL SERIE FUNCTION -----
+     *******************************************/
+    function getFullDetailSerie($params){
+
+        $new_season = new season();
+        $new_season->getRowByMediaID($params['media_id']);
+
+        if($new_season->id != null){
+            return $new_season;
+        }
+        return null;
+    }
+
     /**********************************
      * ----- SORT GENRE FUNCTION -----
      *********************************/

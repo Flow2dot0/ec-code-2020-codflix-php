@@ -9,16 +9,20 @@ require_once('model/favorite.manager.php');
 ***************************/
 
 function mediaPage() {
+    $media_manager = new MediaManager();
 
 // to fill the database
-//    $tmdb_manager = new TmdbManager();
+    $tmdb_manager = new TmdbManager();
 //    $tmdb_manager->init();
+//    $rows_series = $media_manager->getFullDataByType('serie');
+//
+//    $tmdb_manager->initSerieDetail($rows_series);
+
 
 
     // for navbar index
     $nav_index = 1;
 
-    $media_manager = new MediaManager();
 
     // home tab
     $rows_series = $media_manager->getFullDataByType('serie');
@@ -75,5 +79,22 @@ function silentModal(){
     $favorite_manager = new FavoriteManager();
     $is_favorite = $favorite_manager->isFavorite($params['media_id'], $params['user_id']);
 
-    echo  json_encode([$res, $is_favorite]);
+    echo json_encode([$res, $is_favorite]);
+}
+
+/****************************
+ * --------- SERIES -----
+ ****************************/
+function silentSeries(){
+
+    $params = [
+        'media_id' => !empty($_POST['fetch_series']) ? intval(htmlspecialchars($_POST['fetch_series'])) : null,
+        'user_id' => $_SESSION['user_id'],
+    ];
+
+    $media_manager = new MediaManager();
+    $res = $media_manager->getFullDetailSerie($params);
+
+
+    echo  json_encode($res);
 }

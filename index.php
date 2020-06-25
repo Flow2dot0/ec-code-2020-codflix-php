@@ -56,6 +56,12 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'silentseries':
+
+            silentSeries();
+
+            break;
+
         case 'logout':
 
             logout();

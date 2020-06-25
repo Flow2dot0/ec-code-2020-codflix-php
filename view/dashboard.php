@@ -47,6 +47,8 @@
           </div>
         </div>
         <div class="content pr-3 pl-3 pt-0 pb-0">
+            <!-- To get access everywhere -->
+            <?php modalData(); ?>
           <?= $content; ?>
         </div>
         <footer>Copyright Cod'Flix</footer>

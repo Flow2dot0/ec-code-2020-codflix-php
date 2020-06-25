@@ -8,8 +8,9 @@ class TmdbManager
      * ----- PARAMS STRING -----
      ***************************/
     private $api_key = '9ff5f27b6f00c3da0be7419bc71fa24e';
-    private $movie_detail_url = 'https://api.themoviedb.org/3/movie/';
-    private $serie_detail = '';
+    private $serie_detail_url = 'https://api.themoviedb.org/3/tv/';
+
+
 
     private $search_tv_movie_actor = 'https://api.themoviedb.org/3/search/multi?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=fr-FR&page=1&include_adult=false&query=';
 
@@ -18,17 +19,34 @@ class TmdbManager
     private $search_tv = 'https://api.themoviedb.org/3/search/tv?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=en-US&page=1&include_adult=false&query=';
 
     /**************************************
-     * ----- SEARCH MOVIE DETAIL FUNC -----
+     * ----- INIT SERIE DETAIL FUNC -----
      **************************************/
-    function searchMovieDetail(String $movie_id){
-        $res_detail = $this->getData('GET', $this->movie_detail_url.$movie_id.'?api_key='.$this->api_key.'&language=fr-FR');
-        $tmp = json_decode($res_detail);
+    function initSerieDetail($rows_series){
 
+        foreach ($rows_series as $s){
 
+            $new_season = new season();
+            $new_season->media_id = $s->id;
+
+            // proceed
+            $res_detail = $this->getData('GET', $this->serie_detail_url.$s->id.'?api_key='.$this->api_key.'&language=fr-FR');
+            $tmp = json_decode($res_detail);
+
+            // add 8 by default to compensate the missings of API
+            $new_season->s1 = 12;
+            $new_season->s2 = 12;
+
+//            if($tmp->number_of_seasons == null || sizeof($tmp->number_of_seasons) == 0){
+//                $new_season->total_season = 1;
+//            }else{
+//                $new_season->total_season = $tmp->number_of_seasons;
+//            }
+            $new_season->total_season = 2;
+
+            // add
+            $new_season->insertRow();
+        }
     }
-
-
-
 
 
     /***************************
