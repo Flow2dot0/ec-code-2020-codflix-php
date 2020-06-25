@@ -44,6 +44,11 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'silentfavorite':
+
+            silentFavorite();
+
+            break;
 
         case 'logout':
 

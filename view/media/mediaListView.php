@@ -33,25 +33,35 @@
     </div>
 </div>
 
-<!-- NAV CONTENT       -->
-<div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <?php require('view/media/tabs/homeTabView.php') ?>
-    </div>
-    <div class="tab-pane fade" id="pills-series" role="tabpanel" aria-labelledby="pills-series-tab">
-        <?php require('view/media/tabs/serieTabView.php') ?>
-    </div>
-    <div class="tab-pane fade" id="pills-movies" role="tabpanel" aria-labelledby="pills-movies-tab">
-        <?php require('view/media/tabs/movieTabView.php') ?>
-    </div>
-    <div class="tab-pane fade" id="pills-favorites" role="tabpanel" aria-labelledby="pills-favorites-tab">
-        <?php require('view/media/tabs/favoriteTabView.php') ?>
-    </div>
-    <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
-        <?php require('view/media/tabs/historyTabView.php') ?>
-    </div>
-</div>
 
+<!--    <div id="player"></div>-->
+
+
+
+<!-- IF NOT SEARCH MADE -->
+<?php if(!isset($_GET['search'])){
+    ?>
+    <!-- NAV CONTENT       -->
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <?php require('view/media/tabs/homeTabView.php') ?>
+        </div>
+        <div class="tab-pane fade" id="pills-series" role="tabpanel" aria-labelledby="pills-series-tab">
+            <?php require('view/media/tabs/serieTabView.php') ?>
+        </div>
+        <div class="tab-pane fade" id="pills-movies" role="tabpanel" aria-labelledby="pills-movies-tab">
+            <?php require('view/media/tabs/movieTabView.php') ?>
+        </div>
+        <div class="tab-pane fade" id="pills-favorites" role="tabpanel" aria-labelledby="pills-favorites-tab">
+            <?php require('view/media/tabs/favoriteTabView.php') ?>
+        </div>
+        <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
+            <?php require('view/media/tabs/historyTabView.php') ?>
+        </div>
+    </div>
+    <?php
+
+} ?>
 
 
 <div class="media-list">

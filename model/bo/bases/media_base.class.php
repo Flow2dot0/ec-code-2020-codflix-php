@@ -4,12 +4,17 @@ class media_base {
   var $MAX_ROWS=200;
   var $order_by;
   var $id;
-  var $genre_id;
+  var $list_genre_id;
+  var $api_id;
   var $title;
   var $description;
+  var $popularity;
+  var $vote_count;
+  var $poster_path;
+  var $backdrop_path;
+  var $vote_average;
   var $duration;
   var $type;
-  var $status;
   var $release_date;
   var $summary;
   var $trailer_url;
@@ -18,12 +23,17 @@ class media_base {
 
   function __construct() {
     $this->id = "";
-    $this->genre_id = "";
+    $this->list_genre_id = "";
+    $this->api_id = "";
     $this->title = "";
     $this->description = "";
+    $this->popularity = "";
+    $this->vote_count = "";
+    $this->poster_path = "";
+    $this->backdrop_path = "";
+    $this->vote_average = "";
     $this->duration = "";
     $this->type = "";
-    $this->status = "";
     $this->release_date = "";
     $this->summary = "";
     $this->trailer_url = "";
@@ -56,26 +66,48 @@ class media_base {
         $param["id"]= $this->id;
       }
     }
-    if(!empty($this->genre_id) || (isset($this->genre_id) && $this->genre_id === 0)) {
-      $query .= " AND `genre_id`";
+    if(!empty($this->list_genre_id) || (isset($this->list_genre_id) && $this->list_genre_id === 0)) {
+      $query .= " AND `list_genre_id`";
 
       // different of
-      if(substr($this->genre_id, 1, 1) == "!") {
+      if(substr($this->list_genre_id, 1, 1) == "!") {
         // different of empty
-        if($this->genre_id == "!" || $this->genre_id == "%!%") {
-          $query .= " != '' && `genre_id` IS NOT NULL";
+        if($this->list_genre_id == "!" || $this->list_genre_id == "%!%") {
+          $query .= " != '' && `list_genre_id` IS NOT NULL";
         // different of value
         } else {
-          $query .= " NOT LIKE :genre_id";
-          $param["genre_id"]= substr($this->genre_id, 2);
+          $query .= " NOT LIKE :list_genre_id";
+          $param["list_genre_id"]= substr($this->list_genre_id, 2);
         }
       // is empty
-      } elseif(substr($this->genre_id, 1, 1) == "=") {
-        $query .= " = '' || `genre_id` IS NULL";
+      } elseif(substr($this->list_genre_id, 1, 1) == "=") {
+        $query .= " = '' || `list_genre_id` IS NULL";
       // like
       } else {
-        $query .= " LIKE :genre_id";
-        $param["genre_id"]= $this->genre_id;
+        $query .= " LIKE :list_genre_id";
+        $param["list_genre_id"]= $this->list_genre_id;
+      }
+    }
+    if(!empty($this->api_id) || (isset($this->api_id) && $this->api_id === 0)) {
+      $query .= " AND `api_id`";
+
+      // different of
+      if(substr($this->api_id, 1, 1) == "!") {
+        // different of empty
+        if($this->api_id == "!" || $this->api_id == "%!%") {
+          $query .= " != '' && `api_id` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :api_id";
+          $param["api_id"]= substr($this->api_id, 2);
+        }
+      // is empty
+      } elseif(substr($this->api_id, 1, 1) == "=") {
+        $query .= " = '' || `api_id` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :api_id";
+        $param["api_id"]= $this->api_id;
       }
     }
     if(!empty($this->title) || (isset($this->title) && $this->title === 0)) {
@@ -122,6 +154,116 @@ class media_base {
         $param["description"]= $this->description;
       }
     }
+    if(!empty($this->popularity) || (isset($this->popularity) && $this->popularity === 0)) {
+      $query .= " AND `popularity`";
+
+      // different of
+      if(substr($this->popularity, 1, 1) == "!") {
+        // different of empty
+        if($this->popularity == "!" || $this->popularity == "%!%") {
+          $query .= " != '' && `popularity` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :popularity";
+          $param["popularity"]= substr($this->popularity, 2);
+        }
+      // is empty
+      } elseif(substr($this->popularity, 1, 1) == "=") {
+        $query .= " = '' || `popularity` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :popularity";
+        $param["popularity"]= $this->popularity;
+      }
+    }
+    if(!empty($this->vote_count) || (isset($this->vote_count) && $this->vote_count === 0)) {
+      $query .= " AND `vote_count`";
+
+      // different of
+      if(substr($this->vote_count, 1, 1) == "!") {
+        // different of empty
+        if($this->vote_count == "!" || $this->vote_count == "%!%") {
+          $query .= " != '' && `vote_count` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :vote_count";
+          $param["vote_count"]= substr($this->vote_count, 2);
+        }
+      // is empty
+      } elseif(substr($this->vote_count, 1, 1) == "=") {
+        $query .= " = '' || `vote_count` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :vote_count";
+        $param["vote_count"]= $this->vote_count;
+      }
+    }
+    if(!empty($this->poster_path) || (isset($this->poster_path) && $this->poster_path === 0)) {
+      $query .= " AND `poster_path`";
+
+      // different of
+      if(substr($this->poster_path, 1, 1) == "!") {
+        // different of empty
+        if($this->poster_path == "!" || $this->poster_path == "%!%") {
+          $query .= " != '' && `poster_path` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :poster_path";
+          $param["poster_path"]= substr($this->poster_path, 2);
+        }
+      // is empty
+      } elseif(substr($this->poster_path, 1, 1) == "=") {
+        $query .= " = '' || `poster_path` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :poster_path";
+        $param["poster_path"]= $this->poster_path;
+      }
+    }
+    if(!empty($this->backdrop_path) || (isset($this->backdrop_path) && $this->backdrop_path === 0)) {
+      $query .= " AND `backdrop_path`";
+
+      // different of
+      if(substr($this->backdrop_path, 1, 1) == "!") {
+        // different of empty
+        if($this->backdrop_path == "!" || $this->backdrop_path == "%!%") {
+          $query .= " != '' && `backdrop_path` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :backdrop_path";
+          $param["backdrop_path"]= substr($this->backdrop_path, 2);
+        }
+      // is empty
+      } elseif(substr($this->backdrop_path, 1, 1) == "=") {
+        $query .= " = '' || `backdrop_path` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :backdrop_path";
+        $param["backdrop_path"]= $this->backdrop_path;
+      }
+    }
+    if(!empty($this->vote_average) || (isset($this->vote_average) && $this->vote_average === 0)) {
+      $query .= " AND `vote_average`";
+
+      // different of
+      if(substr($this->vote_average, 1, 1) == "!") {
+        // different of empty
+        if($this->vote_average == "!" || $this->vote_average == "%!%") {
+          $query .= " != '' && `vote_average` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :vote_average";
+          $param["vote_average"]= substr($this->vote_average, 2);
+        }
+      // is empty
+      } elseif(substr($this->vote_average, 1, 1) == "=") {
+        $query .= " = '' || `vote_average` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :vote_average";
+        $param["vote_average"]= $this->vote_average;
+      }
+    }
     if(!empty($this->duration) || (isset($this->duration) && $this->duration === 0)) {
       $query .= " AND `duration`";
 
@@ -164,28 +306,6 @@ class media_base {
       } else {
         $query .= " LIKE :type";
         $param["type"]= $this->type;
-      }
-    }
-    if(!empty($this->status) || (isset($this->status) && $this->status === 0)) {
-      $query .= " AND `status`";
-
-      // different of
-      if(substr($this->status, 1, 1) == "!") {
-        // different of empty
-        if($this->status == "!" || $this->status == "%!%") {
-          $query .= " != '' && `status` IS NOT NULL";
-        // different of value
-        } else {
-          $query .= " NOT LIKE :status";
-          $param["status"]= substr($this->status, 2);
-        }
-      // is empty
-      } elseif(substr($this->status, 1, 1) == "=") {
-        $query .= " = '' || `status` IS NULL";
-      // like
-      } else {
-        $query .= " LIKE :status";
-        $param["status"]= $this->status;
       }
     }
     if(!empty($this->release_date) || (isset($this->release_date) && $this->release_date === 0)) {
@@ -302,26 +422,48 @@ class media_base {
         $param["id"]= $this->id;
       }
     }
-    if(!empty($this->genre_id) || (isset($this->genre_id) && $this->genre_id === 0)) {
-      $query .= " AND `genre_id`";
+    if(!empty($this->list_genre_id) || (isset($this->list_genre_id) && $this->list_genre_id === 0)) {
+      $query .= " AND `list_genre_id`";
 
       // different of
-      if(substr($this->genre_id, 1, 1) == "!") {
+      if(substr($this->list_genre_id, 1, 1) == "!") {
         // different of empty
-        if($this->genre_id == "!" || $this->genre_id == "%!%") {
-          $query .= " != '' && `genre_id` IS NOT NULL";
+        if($this->list_genre_id == "!" || $this->list_genre_id == "%!%") {
+          $query .= " != '' && `list_genre_id` IS NOT NULL";
         // different of value
         } else {
-          $query .= " NOT LIKE :genre_id";
-          $param["genre_id"]= substr($this->genre_id, 2);
+          $query .= " NOT LIKE :list_genre_id";
+          $param["list_genre_id"]= substr($this->list_genre_id, 2);
         }
       // is empty
-      } elseif(substr($this->genre_id, 1, 1) == "=") {
-        $query .= " = '' || `genre_id` IS NULL";
+      } elseif(substr($this->list_genre_id, 1, 1) == "=") {
+        $query .= " = '' || `list_genre_id` IS NULL";
       // like
       } else {
-        $query .= " LIKE :genre_id";
-        $param["genre_id"]= $this->genre_id;
+        $query .= " LIKE :list_genre_id";
+        $param["list_genre_id"]= $this->list_genre_id;
+      }
+    }
+    if(!empty($this->api_id) || (isset($this->api_id) && $this->api_id === 0)) {
+      $query .= " AND `api_id`";
+
+      // different of
+      if(substr($this->api_id, 1, 1) == "!") {
+        // different of empty
+        if($this->api_id == "!" || $this->api_id == "%!%") {
+          $query .= " != '' && `api_id` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :api_id";
+          $param["api_id"]= substr($this->api_id, 2);
+        }
+      // is empty
+      } elseif(substr($this->api_id, 1, 1) == "=") {
+        $query .= " = '' || `api_id` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :api_id";
+        $param["api_id"]= $this->api_id;
       }
     }
     if(!empty($this->title) || (isset($this->title) && $this->title === 0)) {
@@ -368,6 +510,116 @@ class media_base {
         $param["description"]= $this->description;
       }
     }
+    if(!empty($this->popularity) || (isset($this->popularity) && $this->popularity === 0)) {
+      $query .= " AND `popularity`";
+
+      // different of
+      if(substr($this->popularity, 1, 1) == "!") {
+        // different of empty
+        if($this->popularity == "!" || $this->popularity == "%!%") {
+          $query .= " != '' && `popularity` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :popularity";
+          $param["popularity"]= substr($this->popularity, 2);
+        }
+      // is empty
+      } elseif(substr($this->popularity, 1, 1) == "=") {
+        $query .= " = '' || `popularity` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :popularity";
+        $param["popularity"]= $this->popularity;
+      }
+    }
+    if(!empty($this->vote_count) || (isset($this->vote_count) && $this->vote_count === 0)) {
+      $query .= " AND `vote_count`";
+
+      // different of
+      if(substr($this->vote_count, 1, 1) == "!") {
+        // different of empty
+        if($this->vote_count == "!" || $this->vote_count == "%!%") {
+          $query .= " != '' && `vote_count` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :vote_count";
+          $param["vote_count"]= substr($this->vote_count, 2);
+        }
+      // is empty
+      } elseif(substr($this->vote_count, 1, 1) == "=") {
+        $query .= " = '' || `vote_count` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :vote_count";
+        $param["vote_count"]= $this->vote_count;
+      }
+    }
+    if(!empty($this->poster_path) || (isset($this->poster_path) && $this->poster_path === 0)) {
+      $query .= " AND `poster_path`";
+
+      // different of
+      if(substr($this->poster_path, 1, 1) == "!") {
+        // different of empty
+        if($this->poster_path == "!" || $this->poster_path == "%!%") {
+          $query .= " != '' && `poster_path` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :poster_path";
+          $param["poster_path"]= substr($this->poster_path, 2);
+        }
+      // is empty
+      } elseif(substr($this->poster_path, 1, 1) == "=") {
+        $query .= " = '' || `poster_path` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :poster_path";
+        $param["poster_path"]= $this->poster_path;
+      }
+    }
+    if(!empty($this->backdrop_path) || (isset($this->backdrop_path) && $this->backdrop_path === 0)) {
+      $query .= " AND `backdrop_path`";
+
+      // different of
+      if(substr($this->backdrop_path, 1, 1) == "!") {
+        // different of empty
+        if($this->backdrop_path == "!" || $this->backdrop_path == "%!%") {
+          $query .= " != '' && `backdrop_path` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :backdrop_path";
+          $param["backdrop_path"]= substr($this->backdrop_path, 2);
+        }
+      // is empty
+      } elseif(substr($this->backdrop_path, 1, 1) == "=") {
+        $query .= " = '' || `backdrop_path` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :backdrop_path";
+        $param["backdrop_path"]= $this->backdrop_path;
+      }
+    }
+    if(!empty($this->vote_average) || (isset($this->vote_average) && $this->vote_average === 0)) {
+      $query .= " AND `vote_average`";
+
+      // different of
+      if(substr($this->vote_average, 1, 1) == "!") {
+        // different of empty
+        if($this->vote_average == "!" || $this->vote_average == "%!%") {
+          $query .= " != '' && `vote_average` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :vote_average";
+          $param["vote_average"]= substr($this->vote_average, 2);
+        }
+      // is empty
+      } elseif(substr($this->vote_average, 1, 1) == "=") {
+        $query .= " = '' || `vote_average` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :vote_average";
+        $param["vote_average"]= $this->vote_average;
+      }
+    }
     if(!empty($this->duration) || (isset($this->duration) && $this->duration === 0)) {
       $query .= " AND `duration`";
 
@@ -410,28 +662,6 @@ class media_base {
       } else {
         $query .= " LIKE :type";
         $param["type"]= $this->type;
-      }
-    }
-    if(!empty($this->status) || (isset($this->status) && $this->status === 0)) {
-      $query .= " AND `status`";
-
-      // different of
-      if(substr($this->status, 1, 1) == "!") {
-        // different of empty
-        if($this->status == "!" || $this->status == "%!%") {
-          $query .= " != '' && `status` IS NOT NULL";
-        // different of value
-        } else {
-          $query .= " NOT LIKE :status";
-          $param["status"]= substr($this->status, 2);
-        }
-      // is empty
-      } elseif(substr($this->status, 1, 1) == "=") {
-        $query .= " = '' || `status` IS NULL";
-      // like
-      } else {
-        $query .= " LIKE :status";
-        $param["status"]= $this->status;
       }
     }
     if(!empty($this->release_date) || (isset($this->release_date) && $this->release_date === 0)) {
@@ -549,12 +779,17 @@ class media_base {
       $row = $prepare->fetch(PDO::FETCH_OBJ);
       if ($row) {
         $this->id = $row->id;
-        $this->genre_id = $row->genre_id;
+        $this->list_genre_id = $row->list_genre_id;
+        $this->api_id = $row->api_id;
         $this->title = $row->title;
         $this->description = $row->description;
+        $this->popularity = $row->popularity;
+        $this->vote_count = $row->vote_count;
+        $this->poster_path = $row->poster_path;
+        $this->backdrop_path = $row->backdrop_path;
+        $this->vote_average = $row->vote_average;
         $this->duration = $row->duration;
         $this->type = $row->type;
-        $this->status = $row->status;
         $this->release_date = $row->release_date;
         $this->summary = $row->summary;
         $this->trailer_url = $row->trailer_url;
@@ -576,18 +811,28 @@ class media_base {
     $this->updated_by = NULL;
   
     $query = "INSERT INTO `media` SET";
-    $query .= " `genre_id` = :genre_id";
-    $param["genre_id"] = !empty($this->genre_id) || $this->genre_id != "" ? $this->genre_id : NULL;
+    $query .= " `list_genre_id` = :list_genre_id";
+    $param["list_genre_id"] = !empty($this->list_genre_id) || $this->list_genre_id != "" ? $this->list_genre_id : NULL;
+    $query .= ", `api_id` = :api_id";
+    $param["api_id"] = !empty($this->api_id) || $this->api_id != "" ? $this->api_id : NULL;
     $query .= ", `title` = :title";
     $param["title"] = !empty($this->title) || $this->title != "" ? $this->title : NULL;
     $query .= ", `description` = :description";
     $param["description"] = !empty($this->description) || $this->description != "" ? $this->description : NULL;
+    $query .= ", `popularity` = :popularity";
+    $param["popularity"] = !empty($this->popularity) || $this->popularity != "" ? $this->popularity : NULL;
+    $query .= ", `vote_count` = :vote_count";
+    $param["vote_count"] = !empty($this->vote_count) || $this->vote_count != "" ? $this->vote_count : NULL;
+    $query .= ", `poster_path` = :poster_path";
+    $param["poster_path"] = !empty($this->poster_path) || $this->poster_path != "" ? $this->poster_path : NULL;
+    $query .= ", `backdrop_path` = :backdrop_path";
+    $param["backdrop_path"] = !empty($this->backdrop_path) || $this->backdrop_path != "" ? $this->backdrop_path : NULL;
+    $query .= ", `vote_average` = :vote_average";
+    $param["vote_average"] = !empty($this->vote_average) || $this->vote_average != "" ? $this->vote_average : NULL;
     $query .= ", `duration` = :duration";
     $param["duration"] = !empty($this->duration) || $this->duration != "" ? $this->duration : NULL;
     $query .= ", `type` = :type";
     $param["type"] = !empty($this->type) || $this->type != "" ? $this->type : NULL;
-    $query .= ", `status` = :status";
-    $param["status"] = !empty($this->status) || $this->status != "" ? $this->status : NULL;
     $query .= ", `release_date` = :release_date";
     $param["release_date"] = !empty($this->release_date) || $this->release_date != "" ? $this->release_date : NULL;
     $query .= ", `summary` = :summary";
@@ -613,7 +858,7 @@ class media_base {
     if(empty($nolog)) {
       
       // require logs class
-      require_once(dirname(__FILE__).  "/../logs.class.php");
+      require_once(dirname(__FILE__) . "/../logs.class.php");
     
       // this class name
       $this_class = get_class($this);
@@ -645,18 +890,28 @@ class media_base {
     if(!empty($_SESSION["ses_id"])) $this->updated_by = $_SESSION["ses_id"];
   
     $query = "UPDATE `media` SET";
-    $query .= " `genre_id` = :genre_id";
-    $param["genre_id"] = !empty($this->genre_id) || $this->genre_id != "" ? $this->genre_id : NULL;
+    $query .= " `list_genre_id` = :list_genre_id";
+    $param["list_genre_id"] = !empty($this->list_genre_id) || $this->list_genre_id != "" ? $this->list_genre_id : NULL;
+    $query .= ", `api_id` = :api_id";
+    $param["api_id"] = !empty($this->api_id) || $this->api_id != "" ? $this->api_id : NULL;
     $query .= ", `title` = :title";
     $param["title"] = !empty($this->title) || $this->title != "" ? $this->title : NULL;
     $query .= ", `description` = :description";
     $param["description"] = !empty($this->description) || $this->description != "" ? $this->description : NULL;
+    $query .= ", `popularity` = :popularity";
+    $param["popularity"] = !empty($this->popularity) || $this->popularity != "" ? $this->popularity : NULL;
+    $query .= ", `vote_count` = :vote_count";
+    $param["vote_count"] = !empty($this->vote_count) || $this->vote_count != "" ? $this->vote_count : NULL;
+    $query .= ", `poster_path` = :poster_path";
+    $param["poster_path"] = !empty($this->poster_path) || $this->poster_path != "" ? $this->poster_path : NULL;
+    $query .= ", `backdrop_path` = :backdrop_path";
+    $param["backdrop_path"] = !empty($this->backdrop_path) || $this->backdrop_path != "" ? $this->backdrop_path : NULL;
+    $query .= ", `vote_average` = :vote_average";
+    $param["vote_average"] = !empty($this->vote_average) || $this->vote_average != "" ? $this->vote_average : NULL;
     $query .= ", `duration` = :duration";
     $param["duration"] = !empty($this->duration) || $this->duration != "" ? $this->duration : NULL;
     $query .= ", `type` = :type";
     $param["type"] = !empty($this->type) || $this->type != "" ? $this->type : NULL;
-    $query .= ", `status` = :status";
-    $param["status"] = !empty($this->status) || $this->status != "" ? $this->status : NULL;
     $query .= ", `release_date` = :release_date";
     $param["release_date"] = !empty($this->release_date) || $this->release_date != "" ? $this->release_date : NULL;
     $query .= ", `summary` = :summary";
@@ -679,7 +934,7 @@ class media_base {
     if(empty($nolog)) {
 
       // require logs class
-      require_once(dirname(__FILE__).  "/../logs.class.php");
+      require_once(dirname(__FILE__) . "/../logs.class.php");
       
       // this class name
       $this_class = get_class($this);
@@ -736,7 +991,7 @@ class media_base {
       }
   
       // require logs class
-      require_once(dirname(__FILE__).  "/../logs.class.php");
+      require_once(dirname(__FILE__) . "/../logs.class.php");
       
       // this class name
       $this_class = get_class($this);

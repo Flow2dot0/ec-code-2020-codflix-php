@@ -203,7 +203,7 @@ class genre_base {
     if(empty($nolog)) {
       
       // require logs class
-      require_once(dirname(__FILE__).  "/../logs.class.php");
+      require_once(dirname(__FILE__) . "/../logs.class.php");
     
       // this class name
       $this_class = get_class($this);
@@ -253,7 +253,7 @@ class genre_base {
     if(empty($nolog)) {
 
       // require logs class
-      require_once(dirname(__FILE__).  "/../logs.class.php");
+      require_once(dirname(__FILE__) . "/../logs.class.php");
       
       // this class name
       $this_class = get_class($this);
@@ -310,7 +310,7 @@ class genre_base {
       }
   
       // require logs class
-      require_once(dirname(__FILE__).  "/../logs.class.php");
+      require_once(dirname(__FILE__) . "/../logs.class.php");
       
       // this class name
       $this_class = get_class($this);

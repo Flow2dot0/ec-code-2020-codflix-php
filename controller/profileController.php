@@ -1,6 +1,7 @@
 <?php
 require_once('model/user.manager.php');
 require_once('public/theme/components.php');
+require_once('model/favorite.manager.php');
 
 /****************************
  * ----- LOAD PROFILE PAGE -----
@@ -66,3 +67,21 @@ function deleteProfile(){
     // TODO : come back later
 }
 
+
+/****************************
+ * --------- FAVORITES -----
+ ****************************/
+function silentFavorite(){
+
+    $params = [
+        'user_id' => !empty($_POST['user_id']) ? intval(htmlspecialchars($_POST['user_id'])) : null,
+        'media_id' => !empty($_POST['media_id']) ? intval(htmlspecialchars($_POST['media_id'])) : null,
+        'favorite_id' => !empty($_POST['favorite_id']) ? intval(htmlspecialchars($_POST['favorite_id'])) : null,
+    ];
+
+    $favorite_manager = new FavoriteManager();
+    $res = $favorite_manager->handleFavorite($params);
+
+    echo json_encode($res);
+
+}

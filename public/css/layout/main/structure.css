@@ -49,6 +49,15 @@
     flex-basis: 100%;
 }
 
+
+/**********
+* Cards
+**********/
 .sizeUp:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
 }
+
+.mediumCardDuration{
+  position: absolute; bottom: 0px; right: 0px;
+}
+
