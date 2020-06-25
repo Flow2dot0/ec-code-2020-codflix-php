@@ -23,53 +23,6 @@ $(document).ready(function() {
         }
     });
 
-    // update favorite
-
-
-
-    // let favorite = $('.updateFavorite');
-    // favorite.on('click', function () {
-    //
-    //     let userID;
-    //     let mediaID;
-    //
-    //
-    //     $('.user_id').each(function () {
-    //         console.log($(this).val());
-    //         if($(this).val().length > 0) userID = $(this).val();
-    //     })
-    //
-    //     $('.media_id').each(function () {
-    //         if($(this).val().length > 0) mediaID = $(this).val();
-    //     })
-    //
-    //
-    //     console.log(mediaID);
-    //
-    //     console.log(userID);
-    //
-    //     $.ajax({
-    //         url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentfavorite',
-    //         method : "POST",
-    //         data : {user_id: userID, media_id : mediaID},
-    //         success : function(data) {
-    //             let decode = JSON.parse(data);
-    //             if(decode != null){
-    //                 favorite.html('<i class="material-icons text-danger">favorite</i>');
-    //             }else{
-    //                 favorite.html('<i class="material-icons text-danger">favorite_border</i>');
-    //             }
-    //             console.log(decode);
-    //             // if(decode){
-    //             //     window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
-    //             // }else{
-    //             //     $('.error-msg').html('La vérification a échouée, veuillez consulter vos emails et réessayer. Sinon, contactez un administrateur.');
-    //             // }
-    //         }
-    //     });
-    //
-    // })
-
 
     // fix for the profileView display err msg
     // by only php the msg is too quickly deleted
@@ -84,10 +37,66 @@ $(document).ready(function() {
     }
 
 
+
+    $('.previewModal').on('click', function (e) {
+        let modalTrigger = $(this);
+
+        const media = modalTrigger.attr('data-media');
+        $.ajax({
+            url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentmodal',
+            method : "POST",
+            data : {modal:media},
+            success : function(data) {
+                let decode = JSON.parse(data);
+                console.log(decode);
+                if(decode != null){
+
+                    let iframe = '<div class="containerVideo"></div><iframe id="ytplayer" height="100%" type="text/html"\n' +
+                        '  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"\n' +
+                        '  class="video" allowfullscreen frameborder="0"/></div>';
+
+
+
+                    let $params = {
+                        'title' : decode['title'],
+                        'release_date' : decode['release_date'],
+                        'genre_1' : decode['genre_1'],
+                        'genre_2' : decode['genre_2'],
+                        'genre_3' : decode['genre_3'],
+                        'genre_4' : decode['genre_4'],
+                        'genre_5' : decode['genre_5'],
+                        'api_id' : decode['api_id'],
+                        'trailer_url' : decode['trailer_url'],
+                        'type' : decode['type'],
+                        'duration' : decode['duration'],
+                        'vote_average' : decode['vote_average'],
+                        'backdrop_path' : decode['backdrop_path'],
+                        'poster_path' : decode['poster_path'],
+                        'vote_count' : decode['vote_count'],
+                        'popularity' : decode['popularity'],
+                        'description' : decode['description'],
+                        'user_id': decode['user_id'],
+                    };
+
+                    let modal =  $('#dataModal');
+                    let modalTitle = $('#dataModalTitle');
+                    let modalVideo = $('#dataModalVideo');
+                    let modalBody = $('#dataModalBody');
+
+                    let buildBody = '';
+
+                    modalTitle.html(decode['title']);
+                    modalVideo.html(iframe);
+                    modal.modal('toggle');
+                }
+            }
+        });
+    })
+
 })
 
 
-
+// handle favorite ajax on / off
 $(document).ready(function() {
 
 
@@ -120,3 +129,4 @@ $(document).ready(function() {
 
     })
 })
+

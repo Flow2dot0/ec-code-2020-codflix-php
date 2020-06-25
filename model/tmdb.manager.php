@@ -8,12 +8,28 @@ class TmdbManager
      * ----- PARAMS STRING -----
      ***************************/
     private $api_key = '9ff5f27b6f00c3da0be7419bc71fa24e';
+    private $movie_detail_url = 'https://api.themoviedb.org/3/movie/';
+    private $serie_detail = '';
 
     private $search_tv_movie_actor = 'https://api.themoviedb.org/3/search/multi?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=fr-FR&page=1&include_adult=false&query=';
 
     private $search_movie = 'https://api.themoviedb.org/3/search/movie?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=en-US&page=1&include_adult=false&query=';
 
     private $search_tv = 'https://api.themoviedb.org/3/search/tv?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=en-US&page=1&include_adult=false&query=';
+
+    /**************************************
+     * ----- SEARCH MOVIE DETAIL FUNC -----
+     **************************************/
+    function searchMovieDetail(String $movie_id){
+        $res_detail = $this->getData('GET', $this->movie_detail_url.$movie_id.'?api_key='.$this->api_key.'&language=fr-FR');
+        $tmp = json_decode($res_detail);
+
+
+    }
+
+
+
+
 
     /***************************
      * ----- INIT DATA FUNC -----

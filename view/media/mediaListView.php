@@ -34,17 +34,15 @@
 </div>
 
 
-<!--    <div id="player"></div>-->
-
-
-
 <!-- IF NOT SEARCH MADE -->
 <?php if(!isset($_GET['search'])){
     ?>
     <!-- NAV CONTENT       -->
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <?php require('view/media/tabs/homeTabView.php') ?>
+            <?php
+            require('view/media/tabs/homeTabView.php')
+            ?>
         </div>
         <div class="tab-pane fade" id="pills-series" role="tabpanel" aria-labelledby="pills-series-tab">
             <?php require('view/media/tabs/serieTabView.php') ?>

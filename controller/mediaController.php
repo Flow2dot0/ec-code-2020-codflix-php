@@ -19,8 +19,20 @@ function mediaPage() {
     $nav_index = 1;
 
     $media_manager = new MediaManager();
-    $rows_movies = $media_manager->getFullDataByType('movie');
+
+    // home tab
     $rows_series = $media_manager->getFullDataByType('serie');
+    $rows_movies = $media_manager->getFullDataByType('movie');
+
+
+    // serie tab
+    $rows_series_sorted = $media_manager->sortByGenre($rows_series);
+
+    // movie tab
+    $rows_movies_sorted = $media_manager->sortByGenre($rows_movies);
+
+
+
     $favorite_manager = new FavoriteManager();
 
 
@@ -44,8 +56,21 @@ function silentFavorite(){
     $favorite_manager = new FavoriteManager();
     $res = $favorite_manager->handleFavorite($params);
 
-
     echo json_encode($res);
-
 }
 
+/****************************
+ * --------- MODAL DATA -----
+ ****************************/
+function silentModal(){
+
+    $params = [
+        'media_id' => !empty($_POST['modal']) ? intval(htmlspecialchars($_POST['modal'])) : null,
+        'user_id' => $_SESSION['user_id'],
+    ];
+
+    $media_manager = new MediaManager();
+    $res = $media_manager->getFullRow($params);
+
+    echo  json_encode($res);
+}

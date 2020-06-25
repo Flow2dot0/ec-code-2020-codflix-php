@@ -50,6 +50,12 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'silentmodal':
+
+            silentModal();
+
+            break;
+
         case 'logout':
 
             logout();

@@ -5,14 +5,57 @@ class MediaManager
 {
     function __construct(){}
 
-    /**********************************
-     * ----- ADD SESSION FUNCTION -----
-     *********************************/
+    /********************************************
+     * ----- GET FULL DATA / TYPE FUNCTION -----
+     *******************************************/
     function getFullDataByType(String $type){
 
-        $medias = new media();
-        return $medias->getFullData($type);
+        $media = new media();
+        return $media->getFullData($type);
     }
+
+    /**********************************
+     * ----- GET FULL ROW FUNCTION -----
+     *********************************/
+    function  getFullRow($params){
+
+        if($params['media_id'] != null && $params['user_id'] != null){
+            $media = new media();
+            $media->getFullRow($params['media_id'], $params['user_id']);
+            return ($media->id != null) ? $media : null;
+        }
+        return null;
+    }
+
+    /**********************************
+     * ----- SORT GENRE FUNCTION -----
+     *********************************/
+    function sortByGenre($rows){
+
+        $genre = new genre();
+        $data = $genre->getData();
+
+        $arr = [];
+
+        // loop on name
+        foreach($data as $elem){
+            // loop on item
+            foreach ($rows as $r){
+                // if exists
+                if($elem->name == $r->genre_1 ||
+                    $elem->name == $r->genre_2 ||
+                    $elem->name == $r->genre_3 ||
+                    $elem->name == $r->genre_4 ||
+                    $elem->name == $r->genre_4){
+                    // add
+                    $arr[$elem->name][] = $r;
+                }
+            }
+
+        }
+        return $arr;
+    }
+
 
     /**********************************
      * --- FORMAT DURATION FUNCTION ---
