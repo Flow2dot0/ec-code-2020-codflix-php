@@ -1,23 +1,29 @@
 <?php
-class favorite_base {
+class list_genre_base {
   var $FIRST_ROW=0;
   var $MAX_ROWS=200;
   var $order_by;
   var $id;
-  var $media_id;
-  var $user_id;
+  var $first;
+  var $second;
+  var $third;
+  var $fourth;
+  var $fifth;
 
   function __construct() {
     $this->id = "";
-    $this->media_id = "";
-    $this->user_id = "";
+    $this->first = "";
+    $this->second = "";
+    $this->third = "";
+    $this->fourth = "";
+    $this->fifth = "";
     $this->order_by = "";
   }
 
   function nbRows() {
     global $pdo;
     $param = array();
-    $query = "SELECT count(*) as NB FROM `favorite` WHERE 0=0";
+    $query = "SELECT count(*) as NB FROM `list_genre` WHERE 0=0";
     if(!empty($this->id) || (isset($this->id) && $this->id === 0)) {
       $query .= " AND `id`";
 
@@ -40,48 +46,114 @@ class favorite_base {
         $param["id"]= $this->id;
       }
     }
-    if(!empty($this->media_id) || (isset($this->media_id) && $this->media_id === 0)) {
-      $query .= " AND `media_id`";
+    if(!empty($this->first) || (isset($this->first) && $this->first === 0)) {
+      $query .= " AND `first`";
 
       // different of
-      if(substr($this->media_id, 1, 1) == "!") {
+      if(substr($this->first, 1, 1) == "!") {
         // different of empty
-        if($this->media_id == "!" || $this->media_id == "%!%") {
-          $query .= " != '' && `media_id` IS NOT NULL";
+        if($this->first == "!" || $this->first == "%!%") {
+          $query .= " != '' && `first` IS NOT NULL";
         // different of value
         } else {
-          $query .= " NOT LIKE :media_id";
-          $param["media_id"]= substr($this->media_id, 2);
+          $query .= " NOT LIKE :first";
+          $param["first"]= substr($this->first, 2);
         }
       // is empty
-      } elseif(substr($this->media_id, 1, 1) == "=") {
-        $query .= " = '' || `media_id` IS NULL";
+      } elseif(substr($this->first, 1, 1) == "=") {
+        $query .= " = '' || `first` IS NULL";
       // like
       } else {
-        $query .= " LIKE :media_id";
-        $param["media_id"]= $this->media_id;
+        $query .= " LIKE :first";
+        $param["first"]= $this->first;
       }
     }
-    if(!empty($this->user_id) || (isset($this->user_id) && $this->user_id === 0)) {
-      $query .= " AND `user_id`";
+    if(!empty($this->second) || (isset($this->second) && $this->second === 0)) {
+      $query .= " AND `second`";
 
       // different of
-      if(substr($this->user_id, 1, 1) == "!") {
+      if(substr($this->second, 1, 1) == "!") {
         // different of empty
-        if($this->user_id == "!" || $this->user_id == "%!%") {
-          $query .= " != '' && `user_id` IS NOT NULL";
+        if($this->second == "!" || $this->second == "%!%") {
+          $query .= " != '' && `second` IS NOT NULL";
         // different of value
         } else {
-          $query .= " NOT LIKE :user_id";
-          $param["user_id"]= substr($this->user_id, 2);
+          $query .= " NOT LIKE :second";
+          $param["second"]= substr($this->second, 2);
         }
       // is empty
-      } elseif(substr($this->user_id, 1, 1) == "=") {
-        $query .= " = '' || `user_id` IS NULL";
+      } elseif(substr($this->second, 1, 1) == "=") {
+        $query .= " = '' || `second` IS NULL";
       // like
       } else {
-        $query .= " LIKE :user_id";
-        $param["user_id"]= $this->user_id;
+        $query .= " LIKE :second";
+        $param["second"]= $this->second;
+      }
+    }
+    if(!empty($this->third) || (isset($this->third) && $this->third === 0)) {
+      $query .= " AND `third`";
+
+      // different of
+      if(substr($this->third, 1, 1) == "!") {
+        // different of empty
+        if($this->third == "!" || $this->third == "%!%") {
+          $query .= " != '' && `third` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :third";
+          $param["third"]= substr($this->third, 2);
+        }
+      // is empty
+      } elseif(substr($this->third, 1, 1) == "=") {
+        $query .= " = '' || `third` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :third";
+        $param["third"]= $this->third;
+      }
+    }
+    if(!empty($this->fourth) || (isset($this->fourth) && $this->fourth === 0)) {
+      $query .= " AND `fourth`";
+
+      // different of
+      if(substr($this->fourth, 1, 1) == "!") {
+        // different of empty
+        if($this->fourth == "!" || $this->fourth == "%!%") {
+          $query .= " != '' && `fourth` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :fourth";
+          $param["fourth"]= substr($this->fourth, 2);
+        }
+      // is empty
+      } elseif(substr($this->fourth, 1, 1) == "=") {
+        $query .= " = '' || `fourth` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :fourth";
+        $param["fourth"]= $this->fourth;
+      }
+    }
+    if(!empty($this->fifth) || (isset($this->fifth) && $this->fifth === 0)) {
+      $query .= " AND `fifth`";
+
+      // different of
+      if(substr($this->fifth, 1, 1) == "!") {
+        // different of empty
+        if($this->fifth == "!" || $this->fifth == "%!%") {
+          $query .= " != '' && `fifth` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :fifth";
+          $param["fifth"]= substr($this->fifth, 2);
+        }
+      // is empty
+      } elseif(substr($this->fifth, 1, 1) == "=") {
+        $query .= " = '' || `fifth` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :fifth";
+        $param["fifth"]= $this->fifth;
       }
     }
     try {
@@ -101,7 +173,7 @@ class favorite_base {
   function getData($obj = true) {
     global $pdo;
     $param=array();
-    $query  = "SELECT * FROM `favorite` WHERE 0=0";
+    $query  = "SELECT * FROM `list_genre` WHERE 0=0";
     if(!empty($this->id) || (isset($this->id) && $this->id === 0)) {
       $query .= " AND `id`";
 
@@ -124,48 +196,114 @@ class favorite_base {
         $param["id"]= $this->id;
       }
     }
-    if(!empty($this->media_id) || (isset($this->media_id) && $this->media_id === 0)) {
-      $query .= " AND `media_id`";
+    if(!empty($this->first) || (isset($this->first) && $this->first === 0)) {
+      $query .= " AND `first`";
 
       // different of
-      if(substr($this->media_id, 1, 1) == "!") {
+      if(substr($this->first, 1, 1) == "!") {
         // different of empty
-        if($this->media_id == "!" || $this->media_id == "%!%") {
-          $query .= " != '' && `media_id` IS NOT NULL";
+        if($this->first == "!" || $this->first == "%!%") {
+          $query .= " != '' && `first` IS NOT NULL";
         // different of value
         } else {
-          $query .= " NOT LIKE :media_id";
-          $param["media_id"]= substr($this->media_id, 2);
+          $query .= " NOT LIKE :first";
+          $param["first"]= substr($this->first, 2);
         }
       // is empty
-      } elseif(substr($this->media_id, 1, 1) == "=") {
-        $query .= " = '' || `media_id` IS NULL";
+      } elseif(substr($this->first, 1, 1) == "=") {
+        $query .= " = '' || `first` IS NULL";
       // like
       } else {
-        $query .= " LIKE :media_id";
-        $param["media_id"]= $this->media_id;
+        $query .= " LIKE :first";
+        $param["first"]= $this->first;
       }
     }
-    if(!empty($this->user_id) || (isset($this->user_id) && $this->user_id === 0)) {
-      $query .= " AND `user_id`";
+    if(!empty($this->second) || (isset($this->second) && $this->second === 0)) {
+      $query .= " AND `second`";
 
       // different of
-      if(substr($this->user_id, 1, 1) == "!") {
+      if(substr($this->second, 1, 1) == "!") {
         // different of empty
-        if($this->user_id == "!" || $this->user_id == "%!%") {
-          $query .= " != '' && `user_id` IS NOT NULL";
+        if($this->second == "!" || $this->second == "%!%") {
+          $query .= " != '' && `second` IS NOT NULL";
         // different of value
         } else {
-          $query .= " NOT LIKE :user_id";
-          $param["user_id"]= substr($this->user_id, 2);
+          $query .= " NOT LIKE :second";
+          $param["second"]= substr($this->second, 2);
         }
       // is empty
-      } elseif(substr($this->user_id, 1, 1) == "=") {
-        $query .= " = '' || `user_id` IS NULL";
+      } elseif(substr($this->second, 1, 1) == "=") {
+        $query .= " = '' || `second` IS NULL";
       // like
       } else {
-        $query .= " LIKE :user_id";
-        $param["user_id"]= $this->user_id;
+        $query .= " LIKE :second";
+        $param["second"]= $this->second;
+      }
+    }
+    if(!empty($this->third) || (isset($this->third) && $this->third === 0)) {
+      $query .= " AND `third`";
+
+      // different of
+      if(substr($this->third, 1, 1) == "!") {
+        // different of empty
+        if($this->third == "!" || $this->third == "%!%") {
+          $query .= " != '' && `third` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :third";
+          $param["third"]= substr($this->third, 2);
+        }
+      // is empty
+      } elseif(substr($this->third, 1, 1) == "=") {
+        $query .= " = '' || `third` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :third";
+        $param["third"]= $this->third;
+      }
+    }
+    if(!empty($this->fourth) || (isset($this->fourth) && $this->fourth === 0)) {
+      $query .= " AND `fourth`";
+
+      // different of
+      if(substr($this->fourth, 1, 1) == "!") {
+        // different of empty
+        if($this->fourth == "!" || $this->fourth == "%!%") {
+          $query .= " != '' && `fourth` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :fourth";
+          $param["fourth"]= substr($this->fourth, 2);
+        }
+      // is empty
+      } elseif(substr($this->fourth, 1, 1) == "=") {
+        $query .= " = '' || `fourth` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :fourth";
+        $param["fourth"]= $this->fourth;
+      }
+    }
+    if(!empty($this->fifth) || (isset($this->fifth) && $this->fifth === 0)) {
+      $query .= " AND `fifth`";
+
+      // different of
+      if(substr($this->fifth, 1, 1) == "!") {
+        // different of empty
+        if($this->fifth == "!" || $this->fifth == "%!%") {
+          $query .= " != '' && `fifth` IS NOT NULL";
+        // different of value
+        } else {
+          $query .= " NOT LIKE :fifth";
+          $param["fifth"]= substr($this->fifth, 2);
+        }
+      // is empty
+      } elseif(substr($this->fifth, 1, 1) == "=") {
+        $query .= " = '' || `fifth` IS NULL";
+      // like
+      } else {
+        $query .= " LIKE :fifth";
+        $param["fifth"]= $this->fifth;
       }
     }
     if(!empty($this->order_by)) {
@@ -198,7 +336,7 @@ class favorite_base {
     
   function getRow($id) {
     global $pdo;
-    $query = "SELECT * FROM `favorite` WHERE id= :id";
+    $query = "SELECT * FROM `list_genre` WHERE id= :id";
     try {
       $prepare = $pdo->prepare($query);
       $prepare->bindValue("id", $id, PDO::PARAM_INT);
@@ -209,8 +347,11 @@ class favorite_base {
       $row = $prepare->fetch(PDO::FETCH_OBJ);
       if ($row) {
         $this->id = $row->id;
-        $this->media_id = $row->media_id;
-        $this->user_id = $row->user_id;
+        $this->first = $row->first;
+        $this->second = $row->second;
+        $this->third = $row->third;
+        $this->fourth = $row->fourth;
+        $this->fifth = $row->fifth;
       }
     } catch(PDOExecption $e) {
       error_log("Error!: " . $e->getMessage() . "</br>");
@@ -228,11 +369,17 @@ class favorite_base {
     $this->updated_on = NULL;
     $this->updated_by = NULL;
   
-    $query = "INSERT INTO `favorite` SET";
-    $query .= " `media_id` = :media_id";
-    $param["media_id"] = !empty($this->media_id) || $this->media_id != "" ? $this->media_id : NULL;
-    $query .= ", `user_id` = :user_id";
-    $param["user_id"] = !empty($this->user_id) || $this->user_id != "" ? $this->user_id : NULL;
+    $query = "INSERT INTO `list_genre` SET";
+    $query .= " `first` = :first";
+    $param["first"] = !empty($this->first) || $this->first != "" ? $this->first : NULL;
+    $query .= ", `second` = :second";
+    $param["second"] = !empty($this->second) || $this->second != "" ? $this->second : NULL;
+    $query .= ", `third` = :third";
+    $param["third"] = !empty($this->third) || $this->third != "" ? $this->third : NULL;
+    $query .= ", `fourth` = :fourth";
+    $param["fourth"] = !empty($this->fourth) || $this->fourth != "" ? $this->fourth : NULL;
+    $query .= ", `fifth` = :fifth";
+    $param["fifth"] = !empty($this->fifth) || $this->fifth != "" ? $this->fifth : NULL;
     try {
       $prepare = $pdo->prepare($query);
       $pdo->beginTransaction();
@@ -283,11 +430,17 @@ class favorite_base {
     $this->updated_on = date("Y-m-d H:i:s");
     if(!empty($_SESSION["ses_id"])) $this->updated_by = $_SESSION["ses_id"];
   
-    $query = "UPDATE `favorite` SET";
-    $query .= " `media_id` = :media_id";
-    $param["media_id"] = !empty($this->media_id) || $this->media_id != "" ? $this->media_id : NULL;
-    $query .= ", `user_id` = :user_id";
-    $param["user_id"] = !empty($this->user_id) || $this->user_id != "" ? $this->user_id : NULL;
+    $query = "UPDATE `list_genre` SET";
+    $query .= " `first` = :first";
+    $param["first"] = !empty($this->first) || $this->first != "" ? $this->first : NULL;
+    $query .= ", `second` = :second";
+    $param["second"] = !empty($this->second) || $this->second != "" ? $this->second : NULL;
+    $query .= ", `third` = :third";
+    $param["third"] = !empty($this->third) || $this->third != "" ? $this->third : NULL;
+    $query .= ", `fourth` = :fourth";
+    $param["fourth"] = !empty($this->fourth) || $this->fourth != "" ? $this->fourth : NULL;
+    $query .= ", `fifth` = :fifth";
+    $param["fifth"] = !empty($this->fifth) || $this->fifth != "" ? $this->fifth : NULL;
     $query .= " WHERE `id` = :id"; 
     $param["id"] = $this->id;
     try {
@@ -347,7 +500,7 @@ class favorite_base {
   
     if(!empty($this->id)) {
         
-      $query = "DELETE FROM `favorite` WHERE id= :id";
+      $query = "DELETE FROM `list_genre` WHERE id= :id";
       try {
         $prepare = $pdo->prepare($query);
         $prepare->bindValue("id", $this->id, PDO::PARAM_INT);

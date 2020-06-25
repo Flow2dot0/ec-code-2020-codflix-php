@@ -86,9 +86,9 @@ class MailManager
      ***************************************************/
     function contactMessage($params){
 
-        // fake email admin, you can test by adding a real one
+        // fake email admin I guess, you can test by adding a real one
         // check spams
-        $placeholder_email_admin = 'florian.gustin.business@gmail.com';
+        $placeholder_email_admin = 'contact@codflix.com';
 
         $subject = 'Cod Flix - Formulaire de contact - '.$params['firstname'].' '.$params['lastname'];
 

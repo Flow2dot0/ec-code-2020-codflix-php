@@ -12,10 +12,12 @@
 
       <!-- Material Design for Bootstrap fonts and icons -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-
       <!-- Material Design for Bootstrap CSS -->
       <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
+      <!-- Owl carousel -->
+      <link rel="stylesheet" href="public/lib/owlcarousel/assets/owl.carousel.min.css">
+      <link rel="stylesheet" href="public/lib/owlcarousel/assets/owl.theme.default.min.css">
   </head>
 
 
@@ -45,13 +47,14 @@
           </div>
         </div>
         <div class="content pr-3 pl-3 pt-0 pb-0">
+            <!-- To get access everywhere -->
+            <?php modalData(); ?>
           <?= $content; ?>
         </div>
         <footer>Copyright Cod'Flix</footer>
       </div>
     </div>
 
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -61,6 +64,9 @@
 
     <script src="public/js/script.js"></script>
     <script src="public/ajax/script.js"></script>
+
+    <!-- Owl carousel JS -->
+    <script src="public/lib/owlcarousel/owl.carousel.min.js"></script>
   </body>
 
 </html>

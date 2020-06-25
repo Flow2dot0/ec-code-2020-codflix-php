@@ -1,5 +1,7 @@
 <?php
 require_once('model/user.manager.php');
+require_once('public/theme/components.php');
+require_once('model/favorite.manager.php');
 
 /****************************
  * ----- LOAD PROFILE PAGE -----
