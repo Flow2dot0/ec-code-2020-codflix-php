@@ -35,8 +35,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="dataModalTitle"></h4>
-                <h4 class="modal-title" id="dataModalDate"></h4>
+                <h4 class="modal-title font-weight-bold" id="dataModalTitle"></h4>
             </div>
             <div class="dropdown-divider mt-3 mb-0"></div>
             <div class="modal-body p-0" id="dataModalVideo">
@@ -53,20 +52,36 @@
                 <div class="container pr-5 pl-5" id="">
                     <div class="row justify-content-between">
                         <div class="font-weight-bold" id="">
+                            Date de sortie :
+                        </div>
+                        <h4 class="modal-title text-danger" id="dataModalDate"></h4>
+                    </div>
+
+                </div>
+                <div class="dropdown-divider mt-3 mb-4"></div>
+                <div class="container pr-5 pl-5" id="">
+                    <div class="row justify-content-between">
+                        <div class="font-weight-bold" id="" style="font-size: 50px;">
                             Note / 10 :
                         </div>
                         <div class="" id="dataModalVoteAverage">
 
                         </div>
                     </div>
+                </div>
+                <div class="dropdown-divider mt-3 mb-4"></div>
+                <div class="container pr-5 pl-5" id="">
                     <div class="row justify-content-between">
-                        <div class="font-weight-bold" id="">
+                        <div class="font-weight-bold" id=""  style="font-size: 30px;">
                             Popularité :
                         </div>
                         <div class="" id="dataModalPopularity">
 
                         </div>
                     </div>
+                </div>
+                <div class="dropdown-divider mt-3 mb-4"></div>
+                <div class="container pr-5 pl-5" id="">
                     <div class="row justify-content-between">
                         <div class="font-weight-bold" id="">
                             Nombre de vote :
@@ -84,3 +99,4 @@
         </div>
     </div>
 </div>
+

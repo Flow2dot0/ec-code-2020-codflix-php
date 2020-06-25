@@ -111,9 +111,9 @@ $(document).ready(function() {
 
                     $('#dataModalDescription').html('<p class="p-4 text-justify">'+decode.description+'</p>');
 
-                    $('#dataModalVoteAverage').html('<p class="font-weight-bold text-primary" style="font-size: 50px;">'+decode.vote_average+'</p>');
+                    $('#dataModalVoteAverage').html('<p class="font-weight-bold text-danger" style="font-size: 50px;">'+decode.vote_average+'</p>');
                     $('#dataModalPopularity').html('<p class="font-weight-bold text-danger" style="font-size: 30px;">'+decode.popularity+'</p>');
-                    $('#dataModalVoteCount').html('<p class="">'+decode.vote_count+'</p>');
+                    $('#dataModalVoteCount').html('<p class="text-danger">'+decode.vote_count+'</p>');
 
                     $('#dataModalVideo').html(iframe);
                     modal.modal('toggle');
