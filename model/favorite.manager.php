@@ -12,7 +12,7 @@ class FavoriteManager
     function handleFavorite($params){
 
         $favorite = new favorite();
-        $favorite->getRow($params['favorite_id']);
+        $favorite->getRowByIDs(intval($params['media_id']), intval($params['user_id']));
 
         if($favorite->id != null){
             $favorite->deleteRow();
@@ -28,13 +28,13 @@ class FavoriteManager
 
 
     /**********************************
-     * ----- ISFAVORITE FUNCTION -----
+     * ----- IS FAVORITE FUNCTION -----
      *********************************/
     function isFavorite(int $media_id, int $user_id){
 
         $favorite = new favorite();
         $favorite->getRowByIDs($media_id, $user_id);
 
-        return ($favorite != null) ? true : false;
+        return ($favorite->id != null) ? true : false;
     }
 }

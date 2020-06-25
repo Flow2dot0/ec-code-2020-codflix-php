@@ -24,59 +24,51 @@ $(document).ready(function() {
     });
 
     // update favorite
-    $('.updateFavorite').on('click', function () {
 
-        let userID;
-        let mediaID;
-        let favoriteID;
 
-        $('.user_id').each(function () {
-            if($(this).val().length > 0) userID = $(this).val();
-        })
 
-        $('.media_id').each(function () {
-            if($(this).val().length > 0) mediaID = $(this).val();
-        })
-
-        $('.favorite_id').each(function () {
-            if($(this).val().length > 0) favoriteID = $(this).val();
-        })
-
-        console.log(mediaID);
-        console.log(favoriteID);
-        console.log(userID);
-
-        $.ajax({
-            url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentfavorite',
-            method : "POST",
-            data : {user_id: userID, media_id : mediaID, favorite_id : favoriteID},
-            success : function(data) {
-                let decode = JSON.parse(data);
-                if(decode != null){
-                    $('.user_id').each(function () {
-                        console.log(decode['user_id']);
-                        if($(this).val().length > 0) $(this).val(decode['user_id']);
-                    })
-                    $('.media_id').each(function () {
-                        console.log(decode['media_id']);
-
-                        if($(this).val().length > 0) $(this).val(decode['media_id']);
-                    })
-                    $('.favorite_id').each(function () {
-                        console.log(decode['id']);
-                        if($(this).val().length > 0) $(this).val(decode['id']);
-                    })
-                }
-                console.log(decode);
-                // if(decode){
-                //     window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
-                // }else{
-                //     $('.error-msg').html('La vérification a échouée, veuillez consulter vos emails et réessayer. Sinon, contactez un administrateur.');
-                // }
-            }
-        });
-
-    })
+    // let favorite = $('.updateFavorite');
+    // favorite.on('click', function () {
+    //
+    //     let userID;
+    //     let mediaID;
+    //
+    //
+    //     $('.user_id').each(function () {
+    //         console.log($(this).val());
+    //         if($(this).val().length > 0) userID = $(this).val();
+    //     })
+    //
+    //     $('.media_id').each(function () {
+    //         if($(this).val().length > 0) mediaID = $(this).val();
+    //     })
+    //
+    //
+    //     console.log(mediaID);
+    //
+    //     console.log(userID);
+    //
+    //     $.ajax({
+    //         url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentfavorite',
+    //         method : "POST",
+    //         data : {user_id: userID, media_id : mediaID},
+    //         success : function(data) {
+    //             let decode = JSON.parse(data);
+    //             if(decode != null){
+    //                 favorite.html('<i class="material-icons text-danger">favorite</i>');
+    //             }else{
+    //                 favorite.html('<i class="material-icons text-danger">favorite_border</i>');
+    //             }
+    //             console.log(decode);
+    //             // if(decode){
+    //             //     window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
+    //             // }else{
+    //             //     $('.error-msg').html('La vérification a échouée, veuillez consulter vos emails et réessayer. Sinon, contactez un administrateur.');
+    //             // }
+    //         }
+    //     });
+    //
+    // })
 
 
     // fix for the profileView display err msg
@@ -92,4 +84,39 @@ $(document).ready(function() {
     }
 
 
+})
+
+
+
+$(document).ready(function() {
+
+
+    $('.updateFavorite').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        let media = $(this).attr('data-media');
+        let user = $(this).attr('data-user');
+
+        let elem = $(this);
+        console.log($(this).parent().html());
+
+        $.ajax({
+            url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentfavorite',
+            method : "POST",
+            data : {user_id: user, media_id : media},
+            success : function(data) {
+                let decode = JSON.parse(data);
+                console.log(decode);
+
+                if(decode !== null){
+                    elem.html('<i class="material-icons text-danger">favorite</i>');
+                }else{
+                    elem.html('<i class="material-icons text-danger">favorite_border</i>');
+                }
+            }
+        });
+
+    })
 })

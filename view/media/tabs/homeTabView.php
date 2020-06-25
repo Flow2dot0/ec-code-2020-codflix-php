@@ -43,7 +43,7 @@
         <div class="owl-carousel def-car">
             <?php
             foreach ($rows_series as $s){
-                mediumCard('https://image.tmdb.org/t/p/w200/'.$s->poster_path, $media_manager->formatDuration($s->duration));
+                mediumCard('https://image.tmdb.org/t/p/w200/'.$s->poster_path, $media_manager->formatDuration($s->duration), $favorite_manager->isFavorite($s->id, $_SESSION['user_id']), $s->id, $_SESSION['user_id']);
             }
             ?>
         </div>
@@ -77,7 +77,7 @@
         <div class="owl-carousel def-car">
             <?php
             foreach ($rows_movies as $m){
-                mediumCard('https://image.tmdb.org/t/p/w200/'.$m->poster_path, $media_manager->formatDuration($m->duration));
+                mediumCard('https://image.tmdb.org/t/p/w200/'.$m->poster_path, $media_manager->formatDuration($m->duration), $favorite_manager->isFavorite($m->id, $_SESSION['user_id']), $m->id, $_SESSION['user_id']);
             }
             ?>
         </div>
