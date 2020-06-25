@@ -104,6 +104,7 @@ $(document).ready(function() {
                     // if movies
                     $('#dataModalVideo').html(iframe);
 
+                    $('#isSeries').html('');
                     // if series
                     if(decode[0]['type'] === 'serie'){
                         $.ajax({
@@ -114,6 +115,16 @@ $(document).ready(function() {
                                 let decoded = JSON.parse(data);
                                 if(decoded != null){
                                     console.log(decoded);
+
+                                    $('#isSeries').html('                    <div class="container" id="isSeries">\n' +
+                                        '                        <h4 class="modal-title text-secondary text-center mb-3 " id="" style="margin-left: -20px !important;">Saison</h4>\n' +
+                                        '                        <table class="table" style="font-size: 11px;">\n' +
+                                        '                            <tbody id="dataModalEpisodes">\n' +
+                                        '                            <tr id="ss1"></tr>\n' +
+                                        '                            <tr id="ss2"></tr>\n' +
+                                        '                            </tbody>\n' +
+                                        '                        </table>\n' +
+                                        '                    </div>');
 
                                     $('#ss1').html('');
                                     $('#ss1').append('<td class="font-weight-bold text-danger m-2" style="font-size: 20px;">1</td>');
@@ -126,6 +137,9 @@ $(document).ready(function() {
                                     for(var i = 1; i <= decoded.s2 ; i++ ){
                                         $('#ss2').append('<td class="font-weight-bold p-0 pt-2"><input class="ss2-index" type="button" value="'+ (i) +'"></td>');
                                     }
+                                }else{
+                                    $('#ss1').html('');
+                                    $('#ss2').html('');
                                 }
                             }
                         });
@@ -164,12 +178,14 @@ $(document).ready(function() {
 
                 if(decode !== null){
                     elem.html('<i class="material-icons text-danger">favorite</i>');
+                    window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
+
                 }else{
                     elem.html('<i class="material-icons text-danger">favorite_border</i>');
+                    window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
                 }
             }
         });
 
     })
 })
-

@@ -13,12 +13,12 @@
             <li class="nav-item">
                 <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-movies" role="tab" aria-controls="pills-movies" aria-selected="false">Films</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-favorites-tab" data-toggle="pill" href="#pills-favorites" role="tab" aria-controls="pills-favorites" aria-selected="false">Ma liste</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-history-tab" data-toggle="pill" href="#pills-history" role="tab" aria-controls="pills-history" aria-selected="false">Mon historique</a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" id="pills-favorites-tab" data-toggle="pill" href="#pills-favorites" role="tab" aria-controls="pills-favorites" aria-selected="false">Ma liste</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" id="pills-history-tab" data-toggle="pill" href="#pills-history" role="tab" aria-controls="pills-history" aria-selected="false">Mon historique</a>-->
+<!--            </li>-->
         </ul>
     </div>
     <div class="col-md-4">

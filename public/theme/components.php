@@ -48,14 +48,8 @@ function modalData(){
                 </div>
                 <div class="dropdown-divider mt-0 mb-4"></div>
                 <div class="modal-body p-0" id="">
-                    <div class="container" id="">
-                        <h4 class="modal-title text-secondary text-center mb-3" id="" style="margin-left: -20px !important;">Saison</h4>
-                        <table class="table" style="font-size: 11px;">
-                            <tbody id="dataModalEpisodes">
-                            <tr id="ss1"></tr>
-                            <tr id="ss2"></tr>
-                            </tbody>
-                        </table>
+                    <div class="container" id="isSeries">
+
                     </div>
                     <div class="row justify-content-center" id="dataModalGenre">
                     </div>
