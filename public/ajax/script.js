@@ -55,9 +55,7 @@ $(document).ready(function() {
                         '  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"\n' +
                         '  class="video" allowfullscreen frameborder="0"/></div>';
 
-
-
-                    let $params = {
+                    let params = {
                         'title' : decode['title'],
                         'release_date' : decode['release_date'],
                         'genre_1' : decode['genre_1'],
@@ -79,14 +77,45 @@ $(document).ready(function() {
                     };
 
                     let modal =  $('#dataModal');
-                    let modalTitle = $('#dataModalTitle');
-                    let modalVideo = $('#dataModalVideo');
-                    let modalBody = $('#dataModalBody');
 
-                    let buildBody = '';
 
-                    modalTitle.html(decode['title']);
-                    modalVideo.html(iframe);
+                    $('#dataModalTitle').html(decode.title);
+                    $('#dataModalDate').html(decode.release_date);
+                    $('#dataModalGenre').html('');
+
+                    if(decode.genre_1 != null)
+                        $('#dataModalGenre').append('                    <div class="mr-1">\n' +
+                        '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_1+'</span></h5>\n' +
+                        '                    </div>');
+
+                    if(decode.genre_2 != null)
+                        $('#dataModalGenre').append('                    <div class="mr-1">\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_2+'</span></h5>\n' +
+                            '                    </div>');
+
+                    if(decode.genre_3 != null)
+                        $('#dataModalGenre').append('                    <div class="mr-1">\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_3+'</span></h5>\n' +
+                            '                    </div>');
+
+                    if(decode.genre_4 != null)
+                        $('#dataModalGenre').append('                    <div class="mr-1">\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_4+'</span></h5>\n' +
+                            '                    </div>');
+
+                    if(decode.genre_5 != null)
+                        $('#dataModalGenre').append('                    <div class="mr-1">\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_5+'</span></h5>\n' +
+                            '                    </div>');
+
+
+                    $('#dataModalDescription').html('<p class="p-4 text-justify">'+decode.description+'</p>');
+
+                    $('#dataModalVoteAverage').html('<p class="font-weight-bold text-primary" style="font-size: 50px;">'+decode.vote_average+'</p>');
+                    $('#dataModalPopularity').html('<p class="font-weight-bold text-danger" style="font-size: 30px;">'+decode.popularity+'</p>');
+                    $('#dataModalVoteCount').html('<p class="">'+decode.vote_count+'</p>');
+
+                    $('#dataModalVideo').html(iframe);
                     modal.modal('toggle');
                 }
             }

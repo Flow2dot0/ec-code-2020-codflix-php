@@ -35,8 +35,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="dataModalTitle">Title</h4>
-                <h4 class="modal-title" id="dataModalDate">Date</h4>
+                <h4 class="modal-title" id="dataModalTitle"></h4>
+                <h4 class="modal-title" id="dataModalDate"></h4>
             </div>
             <div class="dropdown-divider mt-3 mb-0"></div>
             <div class="modal-body p-0" id="dataModalVideo">
@@ -44,32 +44,37 @@
             </div>
             <div class="dropdown-divider mt-0 mb-4"></div>
             <div class="modal-body p-0" id="dataModalBody">
-                <div class="row justify-content-center">
-                    <div class="mr-1">
-                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">Genre 1</span></h5>
-                    </div>
-                    <div class="mr-1">
-                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">Genre 2</span></h5>
-                    </div>
-                    <div class="mr-1">
-                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">Genre 3</span></h5>
-                    </div>
-                    <div class="mr-1">
-                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">Genre 4</span></h5>
-                    </div>
-                    <div class="mr-1">
-                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">Genre 5</span></h5>
-                    </div>
-
+                <div class="row justify-content-center" id="dataModalGenre">
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="dropdown-divider mt-3 mb-4"></div>
+                <div class="container" id="dataModalDescription">
+                </div>
+                <div class="dropdown-divider mt-3 mb-4"></div>
+                <div class="container pr-5 pl-5" id="">
+                    <div class="row justify-content-between">
+                        <div class="font-weight-bold" id="">
+                            Note / 10 :
+                        </div>
+                        <div class="" id="dataModalVoteAverage">
 
+                        </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="row justify-content-between">
+                        <div class="font-weight-bold" id="">
+                            Popularité :
+                        </div>
+                        <div class="" id="dataModalPopularity">
 
+                        </div>
                     </div>
+                    <div class="row justify-content-between">
+                        <div class="font-weight-bold" id="">
+                            Nombre de vote :
+                        </div>
+                        <div class="" id="dataModalVoteCount">
 
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
