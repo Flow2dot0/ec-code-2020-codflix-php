@@ -55,67 +55,55 @@ $(document).ready(function() {
                         '  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"\n' +
                         '  class="video" allowfullscreen frameborder="0"/></div>';
 
-                    let params = {
-                        'title' : decode['title'],
-                        'release_date' : decode['release_date'],
-                        'genre_1' : decode['genre_1'],
-                        'genre_2' : decode['genre_2'],
-                        'genre_3' : decode['genre_3'],
-                        'genre_4' : decode['genre_4'],
-                        'genre_5' : decode['genre_5'],
-                        'api_id' : decode['api_id'],
-                        'trailer_url' : decode['trailer_url'],
-                        'type' : decode['type'],
-                        'duration' : decode['duration'],
-                        'vote_average' : decode['vote_average'],
-                        'backdrop_path' : decode['backdrop_path'],
-                        'poster_path' : decode['poster_path'],
-                        'vote_count' : decode['vote_count'],
-                        'popularity' : decode['popularity'],
-                        'description' : decode['description'],
-                        'user_id': decode['user_id'],
-                    };
 
                     let modal =  $('#dataModal');
 
 
-                    $('#dataModalTitle').html(decode.title);
-                    $('#dataModalDate').html(decode.release_date);
+                    $('#dataModalTitle').html(decode[0].title);
+                    $('#dataModalDate').html(decode[0].release_date);
                     $('#dataModalGenre').html('');
 
-                    if(decode.genre_1 != null)
+                    if(decode[0].genre_1 != null)
                         $('#dataModalGenre').append('                    <div class="mr-1">\n' +
-                        '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_1+'</span></h5>\n' +
+                        '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode[0].genre_1+'</span></h5>\n' +
                         '                    </div>');
 
-                    if(decode.genre_2 != null)
+                    if(decode[0].genre_2 != null)
                         $('#dataModalGenre').append('                    <div class="mr-1">\n' +
-                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_2+'</span></h5>\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode[0].genre_2+'</span></h5>\n' +
                             '                    </div>');
 
-                    if(decode.genre_3 != null)
+                    if(decode[0].genre_3 != null)
                         $('#dataModalGenre').append('                    <div class="mr-1">\n' +
-                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_3+'</span></h5>\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode[0].genre_3+'</span></h5>\n' +
                             '                    </div>');
 
-                    if(decode.genre_4 != null)
+                    if(decode[0].genre_4 != null)
                         $('#dataModalGenre').append('                    <div class="mr-1">\n' +
-                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_4+'</span></h5>\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode[0].genre_4+'</span></h5>\n' +
                             '                    </div>');
 
-                    if(decode.genre_5 != null)
+                    if(decode[0].genre_5 != null)
                         $('#dataModalGenre').append('                    <div class="mr-1">\n' +
-                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode.genre_5+'</span></h5>\n' +
+                            '                        <h5><span class="badge badge-pill badge-dark pr-3 pl-3 pt-2 pb-2">'+decode[0].genre_5+'</span></h5>\n' +
                             '                    </div>');
 
 
-                    $('#dataModalDescription').html('<p class="p-4 text-justify">'+decode.description+'</p>');
+                    $('#dataModalDescription').html('<p class="p-4 text-justify">'+decode[0].description+'</p>');
 
-                    $('#dataModalVoteAverage').html('<p class="font-weight-bold text-danger" style="font-size: 50px;">'+decode.vote_average+'</p>');
-                    $('#dataModalPopularity').html('<p class="font-weight-bold text-danger" style="font-size: 30px;">'+decode.popularity+'</p>');
-                    $('#dataModalVoteCount').html('<p class="text-danger">'+decode.vote_count+'</p>');
+                    $('#dataModalVoteAverage').html('<p class="font-weight-bold text-danger" style="font-size: 50px;">'+decode[0].vote_average+'</p>');
+                    $('#dataModalPopularity').html('<p class="font-weight-bold text-danger" style="font-size: 30px;">'+decode[0].popularity+'</p>');
+                    $('#dataModalVoteCount').html('<p class="text-danger">'+decode[0].vote_count+'</p>');
 
+                    $('#dataModalIsFavorite').attr('data-media', decode[0].id);
+                    $('#dataModalIsFavorite').attr('data-user', decode[0].user_id);
+                    $('#dataModalIsFavorite').html('<i class="material-icons text-danger">'+(decode[1] ? 'favorite' : 'favorite_border')+'</i>')
+                    // if movies
                     $('#dataModalVideo').html(iframe);
+
+                    // if series
+                    // decode[0]['type']
+                    // TODO : complete
                     modal.modal('toggle');
                 }
             }

@@ -72,5 +72,8 @@ function silentModal(){
     $media_manager = new MediaManager();
     $res = $media_manager->getFullRow($params);
 
-    echo  json_encode($res);
+    $favorite_manager = new FavoriteManager();
+    $is_favorite = $favorite_manager->isFavorite($params['media_id'], $params['user_id']);
+
+    echo  json_encode([$res, $is_favorite]);
 }

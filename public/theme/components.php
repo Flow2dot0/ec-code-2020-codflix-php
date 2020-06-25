@@ -7,7 +7,7 @@ function mediumCard(String $url = '', String $duration = '', bool $isFavorite = 
     ?>
 
     <div id="" class="sizeUp card <?= $css ?>" style="width: 12rem;">
-        <a data-toggle="modal" class="previewModal" data-target="#<?= $modal_id ?>" data-media="<?= $media_id ?>">
+        <a data-toggle="modal" class="previewModal" data-media="<?= $media_id ?>">
             <img class="card-img-top" src="<?= $url ?>" alt="Card image cap" style="max-height: 245px;">
         </a>
         <button id="" type="button" class="updateFavorite btn btn-danger bmd-btn-icon" data-media="<?= $media_id ?>" data-user="<?= $user_id ?>">

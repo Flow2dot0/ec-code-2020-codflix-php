@@ -36,6 +36,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title font-weight-bold" id="dataModalTitle"></h4>
+                <button id="dataModalIsFavorite" type="button" class="updateFavorite btn btn-danger bmd-btn-icon" data-media="" data-user="">
+                </button>
             </div>
             <div class="dropdown-divider mt-3 mb-0"></div>
             <div class="modal-body p-0" id="dataModalVideo">
@@ -91,6 +93,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="container" id="">
+                    <div class="row">
+                        <div class="" id="dataModalEpisodes">
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -100,3 +109,6 @@
     </div>
 </div>
 
+<button id="" type="button" class="updateFavorite btn btn-danger bmd-btn-icon" data-media="<?= $media_id ?>" data-user="<?= $user_id ?>">
+    <i class="material-icons text-danger"><?= ($isFavorite) ? 'favorite' : 'favorite_border' ?></i>
+</button>
