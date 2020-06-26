@@ -41,6 +41,7 @@ $(document).ready(function() {
     // add youtube embed player
     // add favorite option
     // toggle modal
+    let triggeredModal;
     $('.previewModal').on('click', function (e) {
         let modalTrigger = $(this);
 
@@ -53,17 +54,21 @@ $(document).ready(function() {
                 let decode = JSON.parse(data);
                 console.log(decode);
                 if(decode != null){
+                    $('#play_pause').attr('data-media', decode[0]['id']);
+                    $('#play_pause').attr('data-user', decode[0]['user_id']);
 
-                    let iframe = '<div class="containerVideo"></div><iframe id="ytplayer" height="100%" type="text/html"\n' +
-                        '  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"\n' +
-                        '  class="video" allowfullscreen frameborder="0"/></div>';
+                    console.log(decode[0]['api_id']);
+                    let iframe = '<div class="containerVideo"><iframe id="ytplayer" height="100%" type="text/html"\n' +
+                        '  src="http://www.youtube.com/embed/'+decode[0]['trailer_url']+'"\n' +
+                        '  class="video" autoplay=1 allowfullscreen frameborder="0"/></div>';
+                    // let iframe = '<div class="containerVideo"><div id="player" class="video"></div></div>';
 
 
                     let modal =  $('#dataModal');
 
 
                     $('#dataModalTitle').html(decode[0].title);
-                    $('#dataModalDate').html(decode[0].release_date);
+                    $('#dataModalDate').html(decode[0].release_date.substr(0,4));
                     $('#dataModalGenre').html('');
 
                     if(decode[0].genre_1 != null)
@@ -116,7 +121,7 @@ $(document).ready(function() {
                                 if(decoded != null){
                                     console.log(decoded);
 
-                                    $('#isSeries').html('                    <div class="container" id="isSeries">\n' +
+                                    $('#isSeries').html('<div class="container" id="isSeries">\n' +
                                         '                        <h4 class="modal-title text-secondary text-center mb-3 " id="" style="margin-left: -20px !important;">Saison</h4>\n' +
                                         '                        <table class="table" style="font-size: 11px;">\n' +
                                         '                            <tbody id="dataModalEpisodes">\n' +
@@ -145,10 +150,49 @@ $(document).ready(function() {
                         });
                     }
                     modal.modal('toggle');
+
+                    // $('.ss1-index').on('click', function () {
+                    //     let test = $(this).val();
+                    //     console.log('coucou');
+                    // })
+                    //
+                    // $('.ss2-index').on('click', function () {
+                    //     let test = $(this).val();
+                    //     console.log('cc');
+                    // })
+
+
+                    $('#play').on('click', function () {
+                        console.log($(this).attr('data-media'));
+                        let mediaID = $('#play').attr('data-media');
+                        let userID = $('#play').attr('data-user');
+
+                        // TODO : AJAX
+                        // add into history
+
+                    });
+                    $('#pause').on('click', function () {
+                        console.log($(this).attr('data-media'));
+                        let mediaID = $('#pause').attr('data-media');
+                        let userID = $('#pause').attr('data-user');
+
+                        // TODO : AJAX
+                        // add into history
+
+                    })
+                    triggeredModal = modal;
+                    modal.on('hidden.bs.modal', function (e) {
+                    })
                 }
             }
+
         });
     })
+
+
+
+
+
 
 })
 
@@ -178,14 +222,51 @@ $(document).ready(function() {
 
                 if(decode !== null){
                     elem.html('<i class="material-icons text-danger">favorite</i>');
-                    window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
-
+                    // window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
                 }else{
                     elem.html('<i class="material-icons text-danger">favorite_border</i>');
-                    window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
+                    // window.location.replace("http://localhost:8888/ec-code-2020-codflix-php-master/index.php");
                 }
             }
         });
 
     })
+
+
+    // refresh
+    // function reloadHistory(){
+    //     $('#loadHistory').load("view/media/load/loadHistoryView.php").fadeIn("slow");
+    //     console.log('coucou')
+    // }
+
+    // function ajaxLoad(type, target){
+    //
+    //     $.ajax({
+    //         url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentload',
+    //         method : "POST",
+    //         data : {load: type},
+    //         success : function(data) {
+    //             let decode = JSON.parse(data);
+    //             console.log(decode);
+    //             if(decode != null){
+    //                 for(let i = 0 ; i < decode[1].length ; i++){
+    //                     let body = '    <div id="" class="sizeUp card text-white bg-dark mb-5 mt-5 p-1" style="width: 12rem;">\n' +
+    //                         '        <a data-toggle="modal" class="previewModal" data-media="'+decode[1][i].id+'">\n' +
+    //                         '            <img class="card-img-top" src="<?= $url ?>" alt="Card image cap" style="max-height: 245px;">\n' +
+    //                         '        </a>\n' +
+    //                         '        <button id="" type="button" class="updateFavorite btn btn-danger bmd-btn-icon" data-media="'+decode[1][i].id+'" data-user="'+decode[2]+'">\n' +
+    //                         '            <i class="material-icons text-danger">'+(decode[0][i] ? 'favorite' : 'favorite_border' )+'</i>\n' +
+    //                         '        </button>\n' +
+    //                         '        <div class="bg-dark pr-2 pl-2 pt-0 pb-2 rounded mediumCardDuration">'+decode[1][i].duration.toHHMMSS()+'</div>\n' +
+    //                         '\n' +
+    //                         '    </div>';
+    //
+    //                     $(target).html(body);
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
 })
+
+

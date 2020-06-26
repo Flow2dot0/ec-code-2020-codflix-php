@@ -1,5 +1,5 @@
 <?php
-require_once('conf/init.inc.php');
+require_once('/Volumes/DATA/dev/ec-code-2020-codflix-php-master/conf/init.inc.php');
 
 class MediaManager
 {

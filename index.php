@@ -50,6 +50,12 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'silentload':
+
+            reloader();
+
+            break;
+
         case 'silentmodal':
 
             silentModal();

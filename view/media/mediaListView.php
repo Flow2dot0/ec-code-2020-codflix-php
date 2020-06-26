@@ -13,12 +13,6 @@
             <li class="nav-item">
                 <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-movies" role="tab" aria-controls="pills-movies" aria-selected="false">Films</a>
             </li>
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" id="pills-favorites-tab" data-toggle="pill" href="#pills-favorites" role="tab" aria-controls="pills-favorites" aria-selected="false">Ma liste</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" id="pills-history-tab" data-toggle="pill" href="#pills-history" role="tab" aria-controls="pills-history" aria-selected="false">Mon historique</a>-->
-<!--            </li>-->
         </ul>
     </div>
     <div class="col-md-4">
@@ -34,32 +28,20 @@
 </div>
 
 
-<!-- IF NOT SEARCH MADE -->
-<?php if(!isset($_GET['search'])){
-    ?>
-    <!-- NAV CONTENT       -->
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <?php
-            require('view/media/tabs/homeTabView.php')
-            ?>
-        </div>
-        <div class="tab-pane fade" id="pills-series" role="tabpanel" aria-labelledby="pills-series-tab">
-            <?php require('view/media/tabs/serieTabView.php') ?>
-        </div>
-        <div class="tab-pane fade" id="pills-movies" role="tabpanel" aria-labelledby="pills-movies-tab">
-            <?php require('view/media/tabs/movieTabView.php') ?>
-        </div>
-        <div class="tab-pane fade" id="pills-favorites" role="tabpanel" aria-labelledby="pills-favorites-tab">
-            <?php require('view/media/tabs/favoriteTabView.php') ?>
-        </div>
-        <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
-            <?php require('view/media/tabs/historyTabView.php') ?>
-        </div>
+<!-- NAV CONTENT       -->
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <?php
+        require('view/media/tabs/homeTabView.php')
+        ?>
     </div>
-    <?php
-
-} ?>
+    <div class="tab-pane fade" id="pills-series" role="tabpanel" aria-labelledby="pills-series-tab">
+        <?php require('view/media/tabs/serieTabView.php') ?>
+    </div>
+    <div class="tab-pane fade" id="pills-movies" role="tabpanel" aria-labelledby="pills-movies-tab">
+        <?php require('view/media/tabs/movieTabView.php') ?>
+    </div>
+</div>
 
 
 <div class="media-list">
