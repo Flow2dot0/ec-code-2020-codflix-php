@@ -30,11 +30,16 @@ if (isset($_GET['action'])):
 
             break;
 
-
         case 'checking':
             if(isset($_GET['email']) && !empty($_GET['email'])) $_SESSION['ses_email'] = htmlspecialchars($_GET['email']);
 
             checkingPage();
+
+            break;
+
+        case 'silentsearch':
+
+            silentSearch();
 
             break;
 
@@ -44,9 +49,20 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'silenthistory':
+
+            silentHistory();
+
+            break;
         case 'silentfavorite':
 
             silentFavorite();
+
+            break;
+
+        case 'silentisfavorite':
+
+            silentIsFavorite();
 
             break;
 
@@ -75,12 +91,24 @@ if (isset($_GET['action'])):
 
             break;
 
+
         case 'deleting':
 
             deleteProfile();
 
             break;
 
+        case 'deletehistory':
+
+            deleteHistory();
+
+            break;
+
+        case 'deleteallhistory':
+
+            deleteAllHistory();
+
+            break;
         case 'contact':
             if (!empty($_POST)) sendContactMessage($_POST);
 

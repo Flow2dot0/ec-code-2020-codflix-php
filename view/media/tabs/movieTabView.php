@@ -13,7 +13,7 @@
             <div class="owl-carousel def-car">
                 <?php
                 foreach ($rows_movies_sorted[$genre_name] as $m){
-                    mediumCard('https://image.tmdb.org/t/p/w200/'.$m->poster_path, $media_manager->formatDuration($m->duration), $favorite_manager->isFavorite($m->id, $_SESSION['user_id']), $m->id, $_SESSION['user_id']);
+                    mediumCard('https://image.tmdb.org/t/p/w200/'.$m->poster_path, $media_manager->formatDuration($m->duration), $favorite_manager->isFavorite($m->id, $_SESSION['user_id']), $m->id, $_SESSION['user_id'], 2);
                 }
                 ?>
             </div>
@@ -25,4 +25,3 @@
 </div>
 
 <?php
-$modal = modalData(); ?>

@@ -1,10 +1,14 @@
 <?php
 
 /*************************************
+ * ----- ABS PATH TO CHANGE -----
+ *************************************/
+$ABS_PATH = '/Volumes/DATA/dev/ec-code-2020-codflix-php-master/';
+$ABS_URL = 'http://localhost:8888/ec-code-2020-codflix-php-master/';
+
+/*************************************
  * ----- AUTOLOADER -----
  *************************************/
-
-
 class ClassAutoloader {
     public function __construct() {
         spl_autoload_register(array($this, 'loader'));

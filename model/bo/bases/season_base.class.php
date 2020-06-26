@@ -16,8 +16,6 @@ class season_base {
   var $s8;
   var $s9;
   var $s10;
-  var $index_season;
-  var $index_episode;
 
   function __construct() {
     $this->id = "";
@@ -33,8 +31,6 @@ class season_base {
     $this->s8 = "";
     $this->s9 = "";
     $this->s10 = "";
-    $this->index_season = "";
-    $this->index_episode = "";
     $this->order_by = "";
   }
 
@@ -326,50 +322,6 @@ class season_base {
       } else {
         $query .= " LIKE :s10";
         $param["s10"]= $this->s10;
-      }
-    }
-    if(!empty($this->index_season) || (isset($this->index_season) && $this->index_season === 0)) {
-      $query .= " AND `index_season`";
-
-      // different of
-      if(substr($this->index_season, 1, 1) == "!") {
-        // different of empty
-        if($this->index_season == "!" || $this->index_season == "%!%") {
-          $query .= " != '' && `index_season` IS NOT NULL";
-        // different of value
-        } else {
-          $query .= " NOT LIKE :index_season";
-          $param["index_season"]= substr($this->index_season, 2);
-        }
-      // is empty
-      } elseif(substr($this->index_season, 1, 1) == "=") {
-        $query .= " = '' || `index_season` IS NULL";
-      // like
-      } else {
-        $query .= " LIKE :index_season";
-        $param["index_season"]= $this->index_season;
-      }
-    }
-    if(!empty($this->index_episode) || (isset($this->index_episode) && $this->index_episode === 0)) {
-      $query .= " AND `index_episode`";
-
-      // different of
-      if(substr($this->index_episode, 1, 1) == "!") {
-        // different of empty
-        if($this->index_episode == "!" || $this->index_episode == "%!%") {
-          $query .= " != '' && `index_episode` IS NOT NULL";
-        // different of value
-        } else {
-          $query .= " NOT LIKE :index_episode";
-          $param["index_episode"]= substr($this->index_episode, 2);
-        }
-      // is empty
-      } elseif(substr($this->index_episode, 1, 1) == "=") {
-        $query .= " = '' || `index_episode` IS NULL";
-      // like
-      } else {
-        $query .= " LIKE :index_episode";
-        $param["index_episode"]= $this->index_episode;
       }
     }
     try {
@@ -676,50 +628,6 @@ class season_base {
         $param["s10"]= $this->s10;
       }
     }
-    if(!empty($this->index_season) || (isset($this->index_season) && $this->index_season === 0)) {
-      $query .= " AND `index_season`";
-
-      // different of
-      if(substr($this->index_season, 1, 1) == "!") {
-        // different of empty
-        if($this->index_season == "!" || $this->index_season == "%!%") {
-          $query .= " != '' && `index_season` IS NOT NULL";
-        // different of value
-        } else {
-          $query .= " NOT LIKE :index_season";
-          $param["index_season"]= substr($this->index_season, 2);
-        }
-      // is empty
-      } elseif(substr($this->index_season, 1, 1) == "=") {
-        $query .= " = '' || `index_season` IS NULL";
-      // like
-      } else {
-        $query .= " LIKE :index_season";
-        $param["index_season"]= $this->index_season;
-      }
-    }
-    if(!empty($this->index_episode) || (isset($this->index_episode) && $this->index_episode === 0)) {
-      $query .= " AND `index_episode`";
-
-      // different of
-      if(substr($this->index_episode, 1, 1) == "!") {
-        // different of empty
-        if($this->index_episode == "!" || $this->index_episode == "%!%") {
-          $query .= " != '' && `index_episode` IS NOT NULL";
-        // different of value
-        } else {
-          $query .= " NOT LIKE :index_episode";
-          $param["index_episode"]= substr($this->index_episode, 2);
-        }
-      // is empty
-      } elseif(substr($this->index_episode, 1, 1) == "=") {
-        $query .= " = '' || `index_episode` IS NULL";
-      // like
-      } else {
-        $query .= " LIKE :index_episode";
-        $param["index_episode"]= $this->index_episode;
-      }
-    }
     if(!empty($this->order_by)) {
       $query .= " ORDER BY ".$this->order_by;
     } 
@@ -773,8 +681,6 @@ class season_base {
         $this->s8 = $row->s8;
         $this->s9 = $row->s9;
         $this->s10 = $row->s10;
-        $this->index_season = $row->index_season;
-        $this->index_episode = $row->index_episode;
       }
     } catch(PDOExecption $e) {
       error_log("Error!: " . $e->getMessage() . "</br>");
@@ -817,10 +723,6 @@ class season_base {
     $param["s9"] = !empty($this->s9) || $this->s9 != "" ? $this->s9 : NULL;
     $query .= ", `s10` = :s10";
     $param["s10"] = !empty($this->s10) || $this->s10 != "" ? $this->s10 : NULL;
-    $query .= ", `index_season` = :index_season";
-    $param["index_season"] = !empty($this->index_season) || $this->index_season != "" ? $this->index_season : NULL;
-    $query .= ", `index_episode` = :index_episode";
-    $param["index_episode"] = !empty($this->index_episode) || $this->index_episode != "" ? $this->index_episode : NULL;
     try {
       $prepare = $pdo->prepare($query);
       $pdo->beginTransaction();
@@ -896,10 +798,6 @@ class season_base {
     $param["s9"] = !empty($this->s9) || $this->s9 != "" ? $this->s9 : NULL;
     $query .= ", `s10` = :s10";
     $param["s10"] = !empty($this->s10) || $this->s10 != "" ? $this->s10 : NULL;
-    $query .= ", `index_season` = :index_season";
-    $param["index_season"] = !empty($this->index_season) || $this->index_season != "" ? $this->index_season : NULL;
-    $query .= ", `index_episode` = :index_episode";
-    $param["index_episode"] = !empty($this->index_episode) || $this->index_episode != "" ? $this->index_episode : NULL;
     $query .= " WHERE `id` = :id"; 
     $param["id"] = $this->id;
     try {

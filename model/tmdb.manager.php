@@ -4,19 +4,13 @@ require_once('conf/init.inc.php');
 
 class TmdbManager
 {
+    function __construct(){}
+
     /***************************
      * ----- PARAMS STRING -----
      ***************************/
     private $api_key = '9ff5f27b6f00c3da0be7419bc71fa24e';
     private $serie_detail_url = 'https://api.themoviedb.org/3/tv/';
-
-
-
-    private $search_tv_movie_actor = 'https://api.themoviedb.org/3/search/multi?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=fr-FR&page=1&include_adult=false&query=';
-
-    private $search_movie = 'https://api.themoviedb.org/3/search/movie?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=en-US&page=1&include_adult=false&query=';
-
-    private $search_tv = 'https://api.themoviedb.org/3/search/tv?api_key=9ff5f27b6f00c3da0be7419bc71fa24e&language=en-US&page=1&include_adult=false&query=';
 
     /**************************************
      * ----- INIT SERIE DETAIL FUNC -----
@@ -36,11 +30,6 @@ class TmdbManager
             $new_season->s1 = 12;
             $new_season->s2 = 12;
 
-//            if($tmp->number_of_seasons == null || sizeof($tmp->number_of_seasons) == 0){
-//                $new_season->total_season = 1;
-//            }else{
-//                $new_season->total_season = $tmp->number_of_seasons;
-//            }
             $new_season->total_season = 2;
 
             // add

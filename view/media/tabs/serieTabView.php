@@ -18,7 +18,7 @@
                         $favorite_manager->isFavorite($m->id,
                         $_SESSION['user_id']),
                         $m->id, $_SESSION['user_id'],
-                        $genre_name.$m->id);
+                        1);
                 }
                 ?>
             </div>
