@@ -43,6 +43,7 @@ $(document).ready(function() {
     // toggle modal
     let triggeredModal;
     $('.previewModal').on('click', function (e) {
+        console.log('clické');
         let modalTrigger = $(this);
 
         const media = modalTrigger.attr('data-media');
@@ -192,13 +193,84 @@ $(document).ready(function() {
 
 
 
+    // hide tabs and go result search
+    $('#loadSearch').on('click', function () {
+        $('#pills-home-tab').removeClass("active");
+        $('#pills-home-tab').attr('hidden', 'hidden');
+        $('#pills-home').hide();
+        $('#pills-series-tab').removeClass("active");
+        $('#pills-series-tab').attr('hidden', 'hidden');
+        $('#pills-series').hide();
+        $('#pills-movies-tab').removeClass("active");
+        $('#pills-movies-tab').attr('hidden', 'hidden');
+        $('#pills-movies').hide();
+
+        $('#pills-search-tab').addClass("active");
+        $('#pills-search').removeClass("fade");
+        $('#pills-search').show();
 
 
+
+        let title = $('#title').val();
+
+        let genre = $('#genre option:selected').val();
+
+        let date = $('#date').val();
+
+        let type = $('#type option:selected').val();
+
+
+        $.ajax({
+            url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentsearch',
+            method : "POST",
+            data : {title: title, genre : (genre !== '' ? genre : null), date : (date !== '' ? date : null), type : (type !== '' ? type : null)},
+            success : function(data) {
+                let decode = JSON.parse(data);
+                console.log(decode);
+                $('#BoxSearch').html('');
+                if(decode[0] != false){
+                    decode[0].forEach((e) => {
+                        $.ajax({
+                            url : 'http://localhost:8888/ec-code-2020-codflix-php-master/index.php?action=silentisfavorite',
+                            method : "POST",
+                            data : {user_id:decode[1], media_id: e.id},
+                            success : function(isFavorite) {
+                                let isFav = JSON.parse(isFavorite);
+                                let eval = isFav ? 'favorite' : 'favorite_border';
+                                let body = '    ' +
+                                    '<div class="col testest">' +
+                                    '<div id="" class="sizeUp card text-white bg-dark mb-5 mt-5 p-1\'" style="width: 12rem;">\n' +
+                                    '        <a data-toggle="modal" class="previewModal" data-media="'+e.id+'" data-index="3">\n' +
+                                    '            <img class="card-img-top" src="https://image.tmdb.org/t/p/w200/'+e.poster_path+'" alt="Card image cap" style="max-height: 245px;">\n' +
+                                    '        </a>\n' +
+                                    '        <button id="" type="button" class="updateFavorite btn btn-danger bmd-btn-icon" data-media="'+e.id+'" data-user="'+decode[1]+'">\n' +
+                                    '            <i class="material-icons text-danger">'+eval+'</i>\n' +
+                                    '        </button>\n' +
+                                    '        <div class="bg-dark pr-2 pl-2 pt-0 pb-2 rounded mediumCardDuration">'+e.duration.toHHMMSS()+'</div>\n' +
+                                    '           </div>' +
+                                    '    <h4 class="text-center" style="position: absolute; top: 10px;">\n' +
+                                    '        <span class="badge badge-pill badge-danger">'+e['release_date'].substr(0, 4)+'</span>\n' +
+                                    '    </h4>\n'+
+                                    '</div>';
+                                $('#BoxSearch').append(body);
+                            }
+                        });
+                    });
+                }
+            }
+        });
+    })
 })
 
 
 // handle favorite ajax on / off
 $(document).ready(function() {
+
+
+    $('.testest').on('click', function () {
+        console.log('coucou');
+
+    })
 
 
     $('.updateFavorite').on('click', function (event) {

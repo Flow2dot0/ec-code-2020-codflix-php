@@ -73,6 +73,15 @@ class MediaManager
         return $arr;
     }
 
+    /**********************************
+     * ----- SEARCH FUNCTION ---------
+     *********************************/
+    function searchData($params){
+
+        $media = new media();
+        return $media->search($params);
+    }
+
 
     /**********************************
      * --- FORMAT DURATION FUNCTION ---

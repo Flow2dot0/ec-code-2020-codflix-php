@@ -37,6 +37,15 @@ function reloader(){
     $rows_movies_sorted = $media_manager->sortByGenre($rows_movies);
 
 }
+/***************************
+ * ----- LOAD DETAIL PAGE -----
+ ***************************/
+function detailPage(){
+
+
+
+    require('view/detailView.php');
+}
 
 
 /***************************
@@ -55,10 +64,8 @@ function mediaPage() {
 //    $tmdb_manager->initSerieDetail($rows_series);
 
 
-
     // for navbar index
     $nav_index = 1;
-
 
     // home tab
     $rows_series = $media_manager->getFullDataByType('serie');
@@ -71,13 +78,7 @@ function mediaPage() {
     // movie tab
     $rows_movies_sorted = $media_manager->sortByGenre($rows_movies);
 
-
-
     $favorite_manager = new FavoriteManager();
-
-
-//  $search = isset( $_GET['titl'] ) ? $_GET['titl'] : null;
-//  $medias = Media::filterMedias( $search );
 
   require('view/media/mediaListView.php');
 
@@ -97,6 +98,20 @@ function silentFavorite(){
     $res = $favorite_manager->handleFavorite($params);
 
     echo json_encode($res);
+}
+
+function silentIsFavorite(){
+
+    $params = [
+        'media_id' => !empty($_POST['media_id']) ? intval(htmlspecialchars($_POST['media_id'])) : null,
+        'user_id' => !empty($_POST['user_id']) ? intval(htmlspecialchars($_POST['user_id'])) : null,
+    ];
+
+    $favorite_manager = new FavoriteManager();
+    $is_favorite = $favorite_manager->isFavorite($params['media_id'], $params['user_id']);
+
+    echo json_encode($is_favorite);
+
 }
 
 /****************************
@@ -133,4 +148,22 @@ function silentSeries(){
 
 
     echo  json_encode($res);
+}
+
+/***************************
+ * ----- SEARCH -----
+ ***************************/
+function silentSearch(){
+
+    $params = [
+        'title' => !empty($_POST['title']) ? strval(htmlspecialchars($_POST['title'])) : null,
+        'genre' => !empty($_POST['genre']) ? strval(htmlspecialchars($_POST['genre'])) : null,
+        'date' => !empty($_POST['date']) ? strval(htmlspecialchars($_POST['date'])) : null,
+        'type' => !empty($_POST['type']) ? strval(htmlspecialchars($_POST['type'])) : null,
+    ];
+
+    $media_manager = new MediaManager();
+    $res = $media_manager->searchData($params);
+
+    echo json_encode([$res, $_SESSION['user_id']]);
 }

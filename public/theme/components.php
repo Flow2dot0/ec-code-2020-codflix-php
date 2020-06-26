@@ -15,9 +15,10 @@ function mediumCard(String $url = '', String $duration = '', bool $isFavorite = 
         </button>
         <div class="bg-dark pr-2 pl-2 pt-0 pb-2 rounded mediumCardDuration"><?= $duration ?></div>
     </div>
-    <h4 class="text-center font-weight-bold font-italic">
-        <?= $date != null ? $date : null ?>
-    </h4>
+    <h5 class="text-center font-weight-bold">
+        <?= $date != null ? '<span class="badge badge-pill badge-danger">'.$date.'</span>
+' : null ?>
+    </h5>
     <?php
 }
 

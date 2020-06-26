@@ -3,54 +3,65 @@
 <form class="row mr-3 ml-3 mt-4 bg-dark p-1" style="border-radius: 15px; color: white !important;">
     <div class="col-lg-5">
         <div class="form-group">
-            <label for="search" class="bmd-label-floating fix-text-color">Rechercher un film ou une série</label>
-            <input type="search" class="form-control fix-text-color" id="search" name="title" >
+            <label for="title" class="bmd-label-floating fix-text-color">Rechercher un film ou une série</label>
+            <input type="search" class="form-control fix-text-color" id="title" name="title" >
         </div>
     </div>
     <div class="col-lg-2" style="margin-top: -8px;">
         <div class="form-group">
             <label for="exampleSelect1" class="bmd-label-floating fix-text-color">Genre</label>
-            <select class="form-control fix-text-color" id="exampleSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select name="genre" class="form-control fix-text-color" id="genre">
+                <option value=""></option>
+                <option value="Action">Action</option>
+                <option value="Aventure">Aventure</option>
+                <option value="Animation">Animation</option>
+                <option value="Comédie">Comédie</option>
+                <option value="Crime">Crime</option>
+                <option value="Documentaire">Documentaire</option>
+                <option value="Drame">Drame</option>
+                <option value="Familial">Familial</option>
+                <option value="Fantastique">Fantastique</option>
+                <option value="Histoire">Histoire</option>
+                <option value="Horreur">Horreur</option>
+                <option value="Musique">Musique</option>
+                <option value="Mystère">Mystère</option>
+                <option value="Romance">Romance</option>
+                <option value="Science-Fiction">Science-Fiction</option>
+                <option value="Téléfilm">Téléfilm</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Guerre">Guerre</option>
+                <option value="Western">Western</option>
+                <option value="Action & Adventure">Action & Adventure</option>
+                <option value="Kids">Kids</option>
+                <option value="News">News</option>
+                <option value="Science-Fiction & Fantastique">Science-Fiction & Fantastique</option>
+                <option value="Soap">Soap</option>
+                <option value="Talk">Talk</option>
+                <option value="War & Politics">War & Politics</option>
+
             </select>
         </div>
     </div>
     <div class="col-lg-2" style="">
         <div class="form-group">
-            <label for="search" class="bmd-label-floating fix-text-color">Date de sortie</label>
-            <input type="search" class="form-control fix-text-color" id="search" name="title" >
+            <label for="date" class="bmd-label-floating fix-text-color">Date de sortie</label>
+            <input type="text" maxlength="4" class="form-control fix-text-color" id="date" name="date" >
         </div>
     </div>
-    <div class="col-lg-3 mt-4" style="">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-            <label class="form-check-label" for="exampleRadios1">
-                Tous
-            </label>
+    <div class="col-lg-3" style="margin-top: -8px;">
+        <div class="form-group">
+            <label for="type" class="bmd-label-floating fix-text-color">Type</label>
+            <select name="genre" class="form-control fix-text-color" id="type">
+                <option value="">Tous</option>
+                <option value="movie">Films</option>
+                <option value="serie">Séries</option>
+            </select>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-            <label class="form-check-label" for="exampleRadios2">
-                Films
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-            <label class="form-check-label" for="exampleRadios3">
-                Séries
-            </label>
-        </div>
-
     </div>
 
     <div class="col-lg-12 pt-4 pb-3">
 
-        <button type="button" class="btn btn-raised btn-danger">Valider</button>
-
+        <button id="loadSearch" type="button" name="searching" class="btn btn-raised btn-danger">Valider</button>
     </div>
 </form>
 
@@ -68,8 +79,8 @@
             <li class="nav-item">
                 <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-movies" role="tab" aria-controls="pills-movies" aria-selected="false">Films</a>
             </li>
-            <li class="nav-item" >
-                <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-search" role="tab" aria-controls="pills-search" aria-selected="false">XXXX</a>
+            <li class="nav-item" hidden>
+                <a class="nav-link" id="pills-search-tab" data-toggle="pill" href="#pills-search" role="tab" aria-controls="pills-search" aria-selected="false">XXXX</a>
             </li>
         </ul>
     </div>
@@ -93,21 +104,6 @@
     <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
         <?php require('view/media/tabs/searchTabView.php') ?>
     </div>
-</div>
-
-
-<div class="media-list">
-    <?php foreach( $medias as $media ): ?>
-        <a class="item" href="index.php?media=<?= $media['id']; ?>">
-            <div class="video">
-                <div>
-                    <iframe allowfullscreen="" frameborder="0"
-                            src="<?= $media['trailer_url']; ?>" ></iframe>
-                </div>
-            </div>
-            <div class="title"><?= $media['title']; ?></div>
-        </a>
-    <?php endforeach; ?>
 </div>
 
 
