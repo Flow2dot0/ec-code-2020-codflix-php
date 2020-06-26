@@ -8,9 +8,12 @@ class MediaManager
     /********************************************
      * ----- GET FULL DATA / TYPE FUNCTION -----
      *******************************************/
-    function getFullDataByType(String $type){
+    function getFullDataByType(String $type = null){
 
         $media = new media();
+        if($type == null){
+            return $media->getData();
+        }
         return $media->getFullData($type);
     }
 

@@ -13,15 +13,18 @@
             <li class="nav-item">
                 <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-movies" role="tab" aria-controls="pills-movies" aria-selected="false">Films</a>
             </li>
+            <li class="nav-item" >
+                <a class="nav-link" id="pills-movies-tab" data-toggle="pill" href="#pills-search" role="tab" aria-controls="pills-search" aria-selected="false">XXXX</a>
+            </li>
         </ul>
     </div>
     <div class="col-md-4">
-        <form method="get">
+        <form method="get" >
             <div class="form-group has-btn">
                 <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
                        placeholder="Rechercher un film ou une série">
 
-                <button type="submit" class="btn btn-block bg-red">Valider</button>
+                <button type="submit" name="searching" class="btn btn-block bg-red">Valider</button>
             </div>
         </form>
     </div>
@@ -40,6 +43,9 @@
     </div>
     <div class="tab-pane fade" id="pills-movies" role="tabpanel" aria-labelledby="pills-movies-tab">
         <?php require('view/media/tabs/movieTabView.php') ?>
+    </div>
+    <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
+        <?php require('view/media/tabs/searchTabView.php') ?>
     </div>
 </div>
 

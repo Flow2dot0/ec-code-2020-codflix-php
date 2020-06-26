@@ -2,7 +2,7 @@
 /******************************
  * -----   MEDIUM CARD  -----
  ****************************/
-function mediumCard(String $url = '', String $duration = '', bool $isFavorite = false, int $media_id = null, int $user_id = null, int $index = 0, String $css = 'text-white bg-dark mb-5 mt-5 p-1'){
+function mediumCard(String $url = '', String $duration = '', bool $isFavorite = false, int $media_id = null, int $user_id = null, int $index = 0, String $date = null, String $css = 'text-white bg-dark mb-5 mt-5 p-1'){
     // handle favorite display
     ?>
 
@@ -14,8 +14,10 @@ function mediumCard(String $url = '', String $duration = '', bool $isFavorite = 
             <i class="material-icons text-danger"><?= ($isFavorite) ? 'favorite' : 'favorite_border' ?></i>
         </button>
         <div class="bg-dark pr-2 pl-2 pt-0 pb-2 rounded mediumCardDuration"><?= $duration ?></div>
-
     </div>
+    <h4 class="text-center font-weight-bold font-italic">
+        <?= $date != null ? $date : null ?>
+    </h4>
     <?php
 }
 

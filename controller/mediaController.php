@@ -45,6 +45,7 @@ function reloader(){
 
 function mediaPage() {
     $media_manager = new MediaManager();
+    $rows = $media_manager->getFullDataByType();
 
 // to fill the database
     $tmdb_manager = new TmdbManager();
