@@ -65,5 +65,10 @@ function updateProfile($post)
 function deleteProfile(){
     // TODO : delete all fk links
     // TODO : come back later
+
+    $user_manager = new UserManager();
+    $user_manager->deleteAllData($_SESSION['user_id']);
+    header('Location: index.php');
+
 }
 

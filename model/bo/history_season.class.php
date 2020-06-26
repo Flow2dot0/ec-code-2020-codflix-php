@@ -1,11 +1,12 @@
 <?php
-require_once dirname(__FILE__) . "/bases/history_base.class.php";
+require_once dirname(__FILE__) . "/bases/history_season_base.class.php";
 
-class history extends history_base {
+class history_season extends history_season_base {
+
     function getDataByID(int $id, $obj = true) {
         global $pdo;
         $param=array();
-        $query  = "SELECT * FROM `history` WHERE user_id=".$id;
+        $query  = "SELECT * FROM `history_season` WHERE user_id=".$id;
         if(!empty($this->id) || (isset($this->id) && $this->id === 0)) {
             $query .= " AND `id`";
 
@@ -50,26 +51,70 @@ class history extends history_base {
                 $param["user_id"]= $this->user_id;
             }
         }
-        if(!empty($this->media_id) || (isset($this->media_id) && $this->media_id === 0)) {
-            $query .= " AND `media_id`";
+        if(!empty($this->season_id) || (isset($this->season_id) && $this->season_id === 0)) {
+            $query .= " AND `season_id`";
 
             // different of
-            if(substr($this->media_id, 1, 1) == "!") {
+            if(substr($this->season_id, 1, 1) == "!") {
                 // different of empty
-                if($this->media_id == "!" || $this->media_id == "%!%") {
-                    $query .= " != '' && `media_id` IS NOT NULL";
+                if($this->season_id == "!" || $this->season_id == "%!%") {
+                    $query .= " != '' && `season_id` IS NOT NULL";
                     // different of value
                 } else {
-                    $query .= " NOT LIKE :media_id";
-                    $param["media_id"]= substr($this->media_id, 2);
+                    $query .= " NOT LIKE :season_id";
+                    $param["season_id"]= substr($this->season_id, 2);
                 }
                 // is empty
-            } elseif(substr($this->media_id, 1, 1) == "=") {
-                $query .= " = '' || `media_id` IS NULL";
+            } elseif(substr($this->season_id, 1, 1) == "=") {
+                $query .= " = '' || `season_id` IS NULL";
                 // like
             } else {
-                $query .= " LIKE :media_id";
-                $param["media_id"]= $this->media_id;
+                $query .= " LIKE :season_id";
+                $param["season_id"]= $this->season_id;
+            }
+        }
+        if(!empty($this->index_season) || (isset($this->index_season) && $this->index_season === 0)) {
+            $query .= " AND `index_season`";
+
+            // different of
+            if(substr($this->index_season, 1, 1) == "!") {
+                // different of empty
+                if($this->index_season == "!" || $this->index_season == "%!%") {
+                    $query .= " != '' && `index_season` IS NOT NULL";
+                    // different of value
+                } else {
+                    $query .= " NOT LIKE :index_season";
+                    $param["index_season"]= substr($this->index_season, 2);
+                }
+                // is empty
+            } elseif(substr($this->index_season, 1, 1) == "=") {
+                $query .= " = '' || `index_season` IS NULL";
+                // like
+            } else {
+                $query .= " LIKE :index_season";
+                $param["index_season"]= $this->index_season;
+            }
+        }
+        if(!empty($this->index_episode) || (isset($this->index_episode) && $this->index_episode === 0)) {
+            $query .= " AND `index_episode`";
+
+            // different of
+            if(substr($this->index_episode, 1, 1) == "!") {
+                // different of empty
+                if($this->index_episode == "!" || $this->index_episode == "%!%") {
+                    $query .= " != '' && `index_episode` IS NOT NULL";
+                    // different of value
+                } else {
+                    $query .= " NOT LIKE :index_episode";
+                    $param["index_episode"]= substr($this->index_episode, 2);
+                }
+                // is empty
+            } elseif(substr($this->index_episode, 1, 1) == "=") {
+                $query .= " = '' || `index_episode` IS NULL";
+                // like
+            } else {
+                $query .= " LIKE :index_episode";
+                $param["index_episode"]= $this->index_episode;
             }
         }
         if(!empty($this->start_date) || (isset($this->start_date) && $this->start_date === 0)) {

@@ -28,8 +28,6 @@ class season extends season_base {
                 $this->s8 = $row->s8;
                 $this->s9 = $row->s9;
                 $this->s10 = $row->s10;
-                $this->index_season = $row->index_season;
-                $this->index_episode = $row->index_episode;
             }
         } catch(PDOExecption $e) {
             error_log("Error!: " . $e->getMessage() . "</br>");

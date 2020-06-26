@@ -92,10 +92,6 @@ if (isset($_GET['action'])):
 
             break;
 
-        case 'detail':
-
-            detailPage();
-            break;
 
         case 'deleting':
 

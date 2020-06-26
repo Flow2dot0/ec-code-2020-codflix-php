@@ -25,11 +25,12 @@ class media extends media_base {
                     LEFT JOIN genre g5 ON g5.id = list_genre.fifth
                     WHERE ";
 
-
+        // IF TITLE
         if($params['title'] != null){
             $tmp = $params['title'];
             $title = "media.title LIKE '$tmp%'";
             $q = $pre_query.$title;
+            // IF GENRE TOO
             if($params['genre'] != null){
                 $tmp2 = $params['genre'];
                 $genre_1 = " AND g1.name = '$tmp2'";
@@ -39,45 +40,54 @@ class media extends media_base {
                 $genre_5 = " OR g5.name = '$tmp2'";
                 $q .= $genre_1.$genre_2.$genre_3.$genre_4.$genre_5;
             }
+            // IF DATE TOO
             if($params['date'] != null){
                 $tmp3 = $params['date'];
                 $date = " AND media.release_date <= '$tmp3'";
                 $q .= $date;
             }
+            // IF TYPE TOO
             if($params['type'] != null){
                 $tmp4 = $params['type'];
                 $type = " AND media.type = '$tmp4'";
                 $q .= $type;
             }
         }else {
+            // NO TEXT
             $q = $pre_query;
+            // IF GENRE
             if($params['genre'] != null){
                 $tmp2 = $params['genre'];
-                $genre_1 = "g1.name = '$tmp2'";
+                $genre_1 = "(g1.name = '$tmp2'";
                 $genre_2 = " OR g2.name = '$tmp2'";
                 $genre_3 = " OR g3.name = '$tmp2'";
                 $genre_4 = " OR g4.name = '$tmp2'";
-                $genre_5 = " OR g5.name = '$tmp2'";
+                $genre_5 = " OR g5.name = '$tmp2')";
                 $q .= $genre_1.$genre_2.$genre_3.$genre_4.$genre_5;
+                // IF DATE TOO
                 if($params['date'] != null){
                     $tmp3 = $params['date'];
                     $date = " AND media.release_date <= '$tmp3'";
                     $q .= $date;
                 }
+                // IF TYPE TOO
                 if($params['type'] != null){
                     $tmp4 = $params['type'];
                     $type = " AND media.type = '$tmp4'";
                     $q .= $type;
                 }
+             // BUT IF DATE
             }elseif($params['date'] != null){
                 $tmp3 = $params['date'];
                 $date = "media.release_date <= '$tmp3'";
                 $q .= $date;
+                // AND TYPE
                 if($params['type'] != null){
                     $tmp4 = $params['type'];
                     $type = " AND media.type = '$tmp4'";
                     $q .= $type;
                 }
+            // LAST
             }else{
                 if($params['type'] != null){
                     $tmp4 = $params['type'];
@@ -87,10 +97,11 @@ class media extends media_base {
             }
         }
 
+        // SORT BY
         $q .= 'ORDER BY media.release_date DESC;';
 
+        // FINAL QUERY
         $query  = $q;
-
 
         if(!empty($this->id) || (isset($this->id) && $this->id === 0)) {
             $query .= " AND `id`";

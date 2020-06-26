@@ -4,49 +4,6 @@ require_once('model/media.manager.php');
 require_once('model/tmdb.manager.php');
 require_once('model/favorite.manager.php');
 
-function reloader(){
-
-    if(!empty($_POST['load']) && $_POST['load'] == 'history'){
-        $media_manager = new MediaManager();
-        $favorite_manager = new FavoriteManager();
-
-        $tmp = [];
-
-        $rows_series = $media_manager->getFullDataByType('serie');
-        foreach ($rows_series as $r){
-            if($favorite_manager->isFavorite($r->id, $_SESSION['user_id'])){
-                $tmp[] = true;
-            }
-            $tmp[] = false;
-        }
-
-
-        echo json_encode([$tmp, $rows_series, $_SESSION['user_id']]);
-    }
-    $media_manager = new MediaManager();
-    $favorite_manager = new FavoriteManager();
-    // home tab
-    $rows_series = $media_manager->getFullDataByType('serie');
-    $rows_movies = $media_manager->getFullDataByType('movie');
-
-
-    // serie tab
-    $rows_series_sorted = $media_manager->sortByGenre($rows_series);
-
-    // movie tab
-    $rows_movies_sorted = $media_manager->sortByGenre($rows_movies);
-
-}
-/***************************
- * ----- LOAD DETAIL PAGE -----
- ***************************/
-function detailPage(){
-
-
-
-    require('view/detailView.php');
-}
-
 
 /***************************
 * ----- LOAD MEDIA PAGE -----

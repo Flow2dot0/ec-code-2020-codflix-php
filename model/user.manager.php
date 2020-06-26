@@ -7,6 +7,43 @@ class UserManager
 {
     function __construct(){}
 
+    /**************************************
+     * ----- DELETE ALL DATA FUNCTION -----
+     **************************************/
+    function deleteAllData($id){
+
+        $user = new user();
+        $user->getRow($id);
+
+        // favorites
+        $favorite = new favorite();
+        $rows_fav = $favorite->getDataByID($id);
+        foreach ($rows_fav as $f){
+            $favorite->getRow($f->id);
+            $favorite->deleteRow();
+        }
+
+        // movie history
+        $history = new history();
+        $rows_history = $history->getDataByID($id);
+        foreach ($rows_history as $h){
+            $history->getRow($h->id);
+            $history->deleteRow();
+        }
+
+        // serie history
+        $history_season = new history_season();
+        $rows_history_season = $history_season->getDataByID($id);
+        foreach ($rows_history_season as $hs){
+            $history_season->getRow($hs->id);
+            $history_season->deleteRow();
+        }
+
+        // user
+        $user->deleteRow();
+        $this->deleteSessions();
+    }
+
     /**********************************
      * ----- ADD SESSION FUNCTION -----
      *********************************/
