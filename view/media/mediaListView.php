@@ -1,7 +1,56 @@
 <?php ob_start(); ?>
 
+<div class="row mr-3 ml-3 mt-4 bg-dark p-1" style="border-radius: 15px; color: white !important;">
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="search" class="bmd-label-floating fix-text-color">Rechercher un film ou une série</label>
+            <input type="search" class="form-control fix-text-color" id="search" name="title" >
+        </div>
+    </div>
+    <div class="col-lg-2" style="margin-top: -8px;">
+        <div class="form-group">
+            <label for="exampleSelect1" class="bmd-label-floating fix-text-color">Genre</label>
+            <select class="form-control fix-text-color" id="exampleSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-lg-2" style="">
+        <div class="form-group">
+            <label for="search" class="bmd-label-floating fix-text-color">Date de sortie</label>
+            <input type="search" class="form-control fix-text-color" id="search" name="title" >
+        </div>
+    </div>
+    <div class="col-lg-3 mt-4" style="">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Tous
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+                Films
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+            <label class="form-check-label" for="exampleRadios3">
+                Séries
+            </label>
+        </div>
+
+    </div>
+</div>
+
+
 <div class="row">
-    <div class="col-md-8 mt-3">
+    <div class="col-md-12 mt-3">
         <!-- NAV TAB        -->
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
@@ -18,16 +67,7 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-4">
-        <form method="get" >
-            <div class="form-group has-btn">
-                <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
-                       placeholder="Rechercher un film ou une série">
 
-                <button type="submit" name="searching" class="btn btn-block bg-red">Valider</button>
-            </div>
-        </form>
-    </div>
 </div>
 
 
