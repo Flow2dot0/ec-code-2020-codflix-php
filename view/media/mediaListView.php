@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<div class="row mr-3 ml-3 mt-4 bg-dark p-1" style="border-radius: 15px; color: white !important;">
+<form class="row mr-3 ml-3 mt-4 bg-dark p-1" style="border-radius: 15px; color: white !important;">
     <div class="col-lg-5">
         <div class="form-group">
             <label for="search" class="bmd-label-floating fix-text-color">Rechercher un film ou une série</label>
@@ -46,7 +46,13 @@
         </div>
 
     </div>
-</div>
+
+    <div class="col-lg-12 pt-4 pb-3">
+
+        <button type="button" class="btn btn-raised btn-danger">Valider</button>
+
+    </div>
+</form>
 
 
 <div class="row">
