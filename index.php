@@ -49,6 +49,11 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'silenthistory':
+
+            silentHistory();
+
+            break;
         case 'silentfavorite':
 
             silentFavorite();
@@ -58,12 +63,6 @@ if (isset($_GET['action'])):
         case 'silentisfavorite':
 
             silentIsFavorite();
-
-            break;
-
-        case 'silentload':
-
-            reloader();
 
             break;
 
@@ -99,6 +98,17 @@ if (isset($_GET['action'])):
 
             break;
 
+        case 'deletehistory':
+
+            deleteHistory();
+
+            break;
+
+        case 'deleteallhistory':
+
+            deleteAllHistory();
+
+            break;
         case 'contact':
             if (!empty($_POST)) sendContactMessage($_POST);
 

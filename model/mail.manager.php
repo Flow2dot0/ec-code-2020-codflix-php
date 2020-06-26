@@ -2,6 +2,7 @@
 
 class MailManager
 {
+    function __construct(){}
 
     /***********************************************
      * ----- SEND EMAIL WHEN NEW USER FUNCTION -----

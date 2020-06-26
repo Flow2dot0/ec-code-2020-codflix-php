@@ -4,6 +4,8 @@ require_once('conf/init.inc.php');
 
 class TmdbManager
 {
+    function __construct(){}
+
     /***************************
      * ----- PARAMS STRING -----
      ***************************/

@@ -226,4 +226,33 @@ class history_season extends history_season_base {
             return false;
         }
     }
+
+    function getRowExists(int $user_id, $season_id) {
+        global $pdo;
+        $query = "SELECT * FROM `history_season` WHERE user_id= :user_id AND season_id= :season_id";
+        try {
+            $prepare = $pdo->prepare($query);
+            $prepare->bindValue("user_id", $user_id, PDO::PARAM_INT);
+            $prepare->bindValue("season_id", $season_id, PDO::PARAM_INT);
+
+            if ($prepare->execute()===false) {
+                error_log($prepare->errorCode() ." - ". var_export($prepare->errorInfo(),TRUE));
+                return false;
+            }
+            $row = $prepare->fetch(PDO::FETCH_OBJ);
+            if ($row) {
+                $this->id = $row->id;
+                $this->user_id = $row->user_id;
+                $this->season_id = $row->season_id;
+                $this->index_season = $row->index_season;
+                $this->index_episode = $row->index_episode;
+                $this->start_date = $row->start_date;
+                $this->finish_date = $row->finish_date;
+                $this->watch_duration = $row->watch_duration;
+            }
+        } catch(PDOExecption $e) {
+            error_log("Error!: " . $e->getMessage() . "</br>");
+            return false;
+        }
+    }
 }

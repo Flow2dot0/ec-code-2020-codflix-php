@@ -1,9 +1,5 @@
 // PATHS
-let myPATH = 'http://localhost:8888/ec-code-2020-codflix-php-master/'
-
-$(document).ready(function () {
-
-});
+let myPATH = 'http://localhost:8888/ec-code-2020-codflix-php-master/';
 
 // CHECKING TOKEN
 $(document).ready(function () {
@@ -50,7 +46,6 @@ $(document).ready(function () {
     // add favorite option
     // toggle modal
     $('.previewModal').on('click', function (e) {
-        console.log('clické');
         let modalTrigger = $(this);
         buildModal(modalTrigger);
 
@@ -182,7 +177,6 @@ function buildModal(myInput){
                 let iframe = '<div class="containerVideo"><iframe id="ytplayer" height="100%" type="text/html"\n' +
                     '  src="http://www.youtube.com/embed/'+decode[0]['trailer_url']+'"\n' +
                     '  class="video" autoplay=1 allowfullscreen frameborder="0"/></div>';
-                // let iframe = '<div class="containerVideo"><div id="player" class="video"></div></div>';
 
 
                 let modal =  $('#dataModal');
@@ -231,6 +225,8 @@ function buildModal(myInput){
                 $('#dataModalVideo').html(iframe);
 
                 $('#isSeries').html('');
+
+
                 // if series
                 if(decode[0]['type'] === 'serie'){
                     $.ajax({
@@ -285,11 +281,21 @@ function buildModal(myInput){
 
                 $('#play').on('click', function () {
                     console.log($(this).attr('data-media'));
-                    let mediaID = $('#play').attr('data-media');
-                    let userID = $('#play').attr('data-user');
+                    let mediaID = $('#dataModalIsFavorite').attr('data-media');
+                    let userID = $('#dataModalIsFavorite').attr('data-user');
 
+
+                        console.log(mediaID);
                     // TODO : AJAX
                     // add into history
+                    $.ajax({
+                        url : myPATH+'index.php?action=silenthistory',
+                        method : "POST",
+                        data : {media_id: mediaID, user_id : userID, type : '', index_season: '', index_episode: '', duration: ''},
+                        success : function(data) {
+
+                        }
+                    });
 
                 });
                 $('#pause').on('click', function () {
@@ -308,6 +314,10 @@ function buildModal(myInput){
         }
 
     });
+
+    $('#dataModalVideo').on('click', function () {
+
+    })
 }
 function buildFavorite(myInput){
     let media = $(myInput).attr('data-media');
