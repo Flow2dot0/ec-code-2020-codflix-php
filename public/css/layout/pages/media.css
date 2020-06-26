@@ -52,6 +52,7 @@
 
 }
 
+
 @media screen and (max-width: 768px) {
     .media-list .item {
         flex-basis: 100%;
