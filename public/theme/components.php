@@ -22,16 +22,6 @@ function mediumCard(String $url = '', String $duration = '', bool $isFavorite = 
     <?php
 }
 
-/******************************
- * -----   LARGE CARD  -----
- ****************************/
-function largeCard(String $url = 'https://fr.web.img5.acsta.net/r_640_360/newsv7/20/06/02/11/30/1318590.jpg', String $css = 'text-white mb-3'){
-    ?>
-    <div class="card <?= $css ?>" style="max-width: 35rem;">
-        <img class="card-img-top" src="<?= $url ?>" alt="Card image cap">
-    </div>
-    <?php
-}
 
 /******************************
  * -----   MODAL DATA  -----

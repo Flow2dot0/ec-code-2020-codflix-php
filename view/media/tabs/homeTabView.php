@@ -3,13 +3,12 @@
         <h4 class="font-weight-bold">Médias susceptibles de vous plaire</h4>
     </div>
     <div class="row mt-3" id="loadSuggest">
-        <div class="owl-carousel suggest-car" >
-            <?php largeCard(); ?>
-            <?php largeCard(); ?>
-            <?php largeCard(); ?>
-            <?php largeCard(); ?>
-            <?php largeCard(); ?>
-            <?php largeCard(); ?>
+        <div class="owl-carousel def-car" >
+            <?php
+            foreach ($rows_movies as $m){
+                    mediumCard('https://image.tmdb.org/t/p/w200/'.$m->poster_path, $media_manager->formatDuration($m->duration), $favorite_manager->isFavorite($m->id, $_SESSION['user_id']), $m->id, $_SESSION['user_id'], 0);
+            }
+            ?>
         </div>
     </div>
 </div>

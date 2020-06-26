@@ -5,6 +5,17 @@ class MediaManager
 {
     function __construct(){}
 
+    /**********************************
+     * ----- SUGGESTIONS FUNCTION -----
+     *********************************/
+    function getSuggestions(){
+
+        // TODO : to finish
+        $media = new media();
+        return $media->getSuggestionsData($_SESSION['user_id']);
+    }
+
+
     /********************************************
      * ----- GET FULL DATA / TYPE FUNCTION -----
      *******************************************/
@@ -20,7 +31,7 @@ class MediaManager
     /**********************************
      * ----- GET FULL ROW FUNCTION -----
      *********************************/
-    function  getFullRow($params){
+    function getFullRow($params){
 
         if($params['media_id'] != null && $params['user_id'] != null){
             $media = new media();

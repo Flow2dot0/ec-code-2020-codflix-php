@@ -291,7 +291,7 @@ function buildModal(myInput){
                     $.ajax({
                         url : myPATH+'index.php?action=silenthistory',
                         method : "POST",
-                        data : {media_id: mediaID, user_id : userID, type : '', index_season: '', index_episode: '', duration: ''},
+                        data : {media_id: mediaID, user_id : userID, type : decode[0]['type'], index_season: '', index_episode: '', duration: ''},
                         success : function(data) {
 
                         }
